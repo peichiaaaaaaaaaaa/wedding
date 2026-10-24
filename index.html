@@ -1,0 +1,1324 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wedding of Julian & Evelyn ｜ 台北士林萬麗酒店</title>
+  
+  <!-- Fonts: Cormorant Garamond & Noto Serif TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      /* 封面圖網址 */
+      --cover-img-url: url('https://i.postimg.cc/43P89sw3/LINE-ALBUM-GR3-261023-1.jpg');
+
+      /* 深林墨綠、暖象牙白與復古金調 */
+      --primary: #1C3524;          /* 濃郁深森墨綠 */
+      --primary-dark: #122217;     /* 黑松墨綠近黑 */
+      --primary-light: #2D4C36;    /* 絲絨松針綠 */
+      --primary-subtle: #24402E;   /* 中層墨綠 */
+      --sage-muted: #536F5A;       /* 灰調鼠尾草草本綠 */
+      --sage-pale: #E1EBE3;        /* 淡草本柔色 */
+      --sage-mist: #D0DFD4;        /* 淺松霧綠 */
+      
+      --accent-gold: #C5A059;      /* 啞光復古金 */
+      --accent-gold-light: #DFBF7A;/* 璀璨金屬光 */
+      --gold-border: rgba(197, 160, 89, 0.4);
+      
+      --bg-cream: #FAF8F5;         /* 暖象牙米白 */
+      --bg-surface: #EBF1EC;       /* 蘊含淡綠韻味的淺柔沙色 */
+      --card-white: #FFFFFF;       /* 羊皮紙純白微光 */
+      
+      --text-main: #142419;        /* 極深墨綠近黑 */
+      --text-muted: #4B6151;       /* 沉靜墨綠字體 */
+      --border-subtle: #C9D6CC;    /* 綠調細緻淺邊框 */
+      
+      --font-en: 'Cormorant Garamond', Georgia, serif;
+      --font-tc: 'Noto Serif TC', "PingFang TC", "Microsoft JhengHei", serif;
+      --nav-height: 72px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: var(--font-tc);
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* 手機防折行關鍵詞類別 */
+    .nowrap-keyword {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    /* 漂浮綠葉背景動畫 */
+    .leaf-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .leaf {
+      position: absolute;
+      width: 14px;
+      height: 22px;
+      background: radial-gradient(ellipse at center, rgba(107, 130, 113, 0.28) 0%, rgba(37, 61, 44, 0.08) 100%);
+      border-radius: 50% 0 50% 50%;
+      transform: rotate(45deg);
+      animation: leafFall 16s linear infinite;
+    }
+    @keyframes leafFall {
+      0% { transform: translateY(-50px) rotate(0deg) translateX(0); opacity: 0; }
+      20% { opacity: 0.7; }
+      80% { opacity: 0.7; }
+      100% { transform: translateY(105vh) rotate(540deg) translateX(120px); opacity: 0; }
+    }
+
+    /* 頂部固定毛玻璃導覽列 */
+    header.glass-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      background: rgba(26, 46, 32, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(197, 160, 89, 0.35);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(18, 34, 23, 0.25);
+    }
+    .nav-brand {
+      font-family: var(--font-en);
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: #FAF8F5;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-brand span {
+      color: var(--accent-gold);
+      font-size: 18px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #E6EDE8;
+      font-size: 13.5px;
+      letter-spacing: 1.5px;
+      font-weight: 400;
+      position: relative;
+      transition: color 0.3s;
+      padding-bottom: 4px;
+    }
+    .nav-links a:hover {
+      color: var(--accent-gold-light);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 1px;
+      background: var(--accent-gold-light);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .audio-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold-light);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .audio-btn:hover {
+      background: var(--accent-gold);
+      color: var(--primary-dark);
+    }
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: #FAF8F5;
+      cursor: pointer;
+    }
+
+    /* 手機導航抽屜 */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      width: 100%;
+      background: rgba(26, 46, 32, 0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gold-border);
+      padding: 24px 0;
+      text-align: center;
+      z-index: 998;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .mobile-drawer.active {
+      display: block;
+    }
+    .mobile-drawer a {
+      display: block;
+      padding: 12px 0;
+      color: #FAF8F5;
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: 1.5px;
+      transition: color 0.3s;
+    }
+    .mobile-drawer a:hover {
+      color: var(--accent-gold-light);
+    }
+
+    /* 首頁全螢幕封面 */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+      background: linear-gradient(180deg, rgba(20, 36, 25, 0.8) 0%, rgba(28, 53, 36, 0.88) 100%),
+                  var(--cover-img-url) center center / cover no-repeat;
+      z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-en);
+      letter-spacing: 4px;
+      font-size: 13px;
+      text-transform: uppercase;
+      color: var(--accent-gold-light);
+      margin-bottom: 20px;
+    }
+    .hero-badge::before, .hero-badge::after {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--accent-gold-light);
+    }
+    .hero-title {
+      font-family: var(--font-en);
+      font-size: clamp(48px, 9vw, 84px);
+      font-weight: 300;
+      color: #FAF8F5;
+      letter-spacing: 4px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+    .hero-title .amp {
+      font-style: italic;
+      color: var(--accent-gold-light);
+      font-weight: 300;
+      padding: 0 4px;
+    }
+    .hero-subtitle {
+      font-size: 16px;
+      color: #D3E0D6;
+      letter-spacing: 3px;
+      margin-bottom: 45px;
+      font-weight: 400;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    /* 藝術倒數計時器 */
+    .countdown-wrapper {
+      margin-top: 10px;
+      padding: 10px;
+    }
+    .countdown-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .timer-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      padding: 16px 20px;
+      min-width: 82px;
+      box-shadow: 0 12px 28px -4px rgba(10, 20, 13, 0.3), 0 4px 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+    .timer-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent-gold));
+    }
+    .timer-card:hover {
+      transform: translateY(-2px);
+    }
+    .timer-num {
+      font-family: var(--font-en);
+      font-size: clamp(30px, 5vw, 42px);
+      font-weight: 500;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .timer-unit {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--primary-light);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .timer-divider {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(180deg, transparent, var(--accent-gold-light), transparent);
+      opacity: 0.85;
+    }
+
+    /* 區塊共用樣式 */
+    section {
+      position: relative;
+      z-index: 2;
+      padding: 90px 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-header .sub-en {
+      font-family: var(--font-en);
+      font-size: 14px;
+      letter-spacing: 3.5px;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-header h2 {
+      font-size: 28px;
+      color: var(--primary);
+      letter-spacing: 2.5px;
+      font-weight: 500;
+    }
+    .section-header .decor-leaf {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--accent-gold);
+    }
+
+    /* 關於我們 */
+    .story-card {
+      background: linear-gradient(145deg, #1A3122 0%, #132418 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: 16px;
+      padding: 48px 36px;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(18, 34, 23, 0.22);
+      line-height: 2.2;
+      color: #FAF8F5;
+      font-size: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+    .story-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 30%, rgba(197, 160, 89, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .story-card p {
+      margin-bottom: 20px;
+      color: #E2ECE5;
+      position: relative;
+      z-index: 1;
+    }
+    .signature {
+      font-family: var(--font-en);
+      font-size: 28px;
+      color: var(--accent-gold-light);
+      margin-top: 24px;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 垂直 V-Card 婚禮行程 */
+    .v-card-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .v-card {
+      background: var(--card-white);
+      border-radius: 14px;
+      padding: 26px 30px;
+      border: 1px solid var(--border-subtle);
+      border-left: 6px solid var(--primary);
+      box-shadow: 0 8px 24px rgba(22, 38, 27, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+    .v-card:hover {
+      transform: translateX(4px);
+      border-left-color: var(--accent-gold);
+      box-shadow: 0 12px 28px rgba(28, 53, 36, 0.12);
+    }
+    .v-card-left {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+    }
+    .v-time {
+      font-family: var(--font-en);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 1px;
+      min-width: 78px;
+    }
+    .v-details h4 {
+      font-size: 18px;
+      color: var(--primary-dark);
+      font-weight: 500;
+      margin-bottom: 4px;
+      letter-spacing: 1px;
+    }
+    .v-details p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .v-tag {
+      font-size: 12px;
+      background: var(--primary);
+      color: #FAF8F5;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      box-shadow: 0 2px 6px rgba(28, 53, 36, 0.25);
+    }
+
+    /* Dress Code 著裝建議區塊 */
+    .dress-code-card {
+      background: var(--card-white);
+      border-radius: 16px;
+      border: 1px solid var(--gold-border);
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(28, 53, 36, 0.06);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .dress-code-intro {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      line-height: 2;
+    }
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      justify-items: center;
+    }
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .swatch-circle {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      margin-bottom: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .swatch-circle:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+    }
+    .color-name-zh {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+    .color-name-en {
+      font-family: var(--font-en);
+      font-size: 12px;
+      color: var(--accent-gold);
+      letter-spacing: 1px;
+    }
+
+    /* 交通指引摺疊手風琴 */
+    .accordion-container {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .accordion-item {
+      background: var(--card-white);
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      transition: all 0.3s ease;
+    }
+    .accordion-header {
+      width: 100%;
+      padding: 20px 24px;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: var(--font-tc);
+      font-size: 16px;
+      color: var(--primary);
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-align: left;
+    }
+    .accordion-header .acc-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .accordion-header .acc-icon {
+      font-size: 18px;
+      color: var(--accent-gold);
+    }
+    .accordion-header .arrow-toggle {
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: transform 0.3s ease;
+    }
+    .accordion-item.active .arrow-toggle {
+      transform: rotate(180deg);
+      color: var(--accent-gold);
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      background: var(--bg-surface);
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.9;
+      padding: 0 24px;
+    }
+    .accordion-item.active .accordion-content {
+      max-height: 440px;
+      padding: 16px 24px 24px 24px;
+      border-top: 1px dashed var(--border-subtle);
+    }
+    .venue-info-box {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .venue-info-box h3 {
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .venue-info-box p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* 出席回函卡片 */
+    .rsvp-card {
+      background: var(--card-white);
+      border-radius: 16px;
+      border: 1px solid var(--gold-border);
+      box-shadow: 0 18px 40px rgba(22, 38, 27, 0.08);
+      padding: 44px 36px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .form-label .en-label {
+      font-family: var(--font-en);
+      font-size: 12px;
+      color: var(--accent-gold);
+      margin-left: 6px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: var(--font-tc);
+      font-size: 14px;
+      background: var(--bg-cream);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(28, 53, 36, 0.15);
+    }
+    select.form-control {
+      cursor: pointer;
+    }
+    textarea.form-control {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* 送出按鈕 */
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #FAF8F5;
+      border: none;
+      border-radius: 30px;
+      padding: 16px;
+      font-size: 15px;
+      letter-spacing: 3px;
+      font-weight: 400;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(18, 34, 23, 0.28);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .btn-submit:hover {
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(18, 34, 23, 0.35);
+    }
+
+    /* 感謝彈窗 (Modal) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(18, 34, 23, 0.65);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-box {
+      background: var(--card-white);
+      padding: 40px 30px;
+      border-radius: 16px;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      border: 1px solid var(--gold-border);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+      animation: modalFadeIn 0.4s ease;
+    }
+    @keyframes modalFadeIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-icon {
+      font-size: 44px;
+      color: var(--accent-gold);
+      margin-bottom: 12px;
+    }
+    .modal-box h3 {
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .modal-box p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+    .btn-modal-close {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 20px;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-modal-close:hover {
+      background: var(--accent-gold);
+    }
+
+    footer {
+      background: var(--primary-dark);
+      color: #A9BDB0;
+      text-align: center;
+      padding: 60px 20px 40px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      border-top: 1px solid rgba(197, 160, 89, 0.25);
+      position: relative;
+      z-index: 2;
+    }
+    footer p {
+      color: #E2ECE5;
+    }
+
+    /* 手機版排版調適 */
+    @media (max-width: 768px) {
+      header.glass-navbar {
+        padding: 0 20px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-toggle {
+        display: block;
+      }
+      .hero-title {
+        letter-spacing: 2px;
+      }
+      .countdown-container {
+        gap: 6px;
+      }
+      .timer-card {
+        min-width: 66px;
+        padding: 12px 10px;
+      }
+      .timer-divider {
+        height: 24px;
+      }
+      .palette-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 16px;
+      }
+      .swatch-circle {
+        width: 60px;
+        height: 60px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .v-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .rsvp-card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 漂浮綠葉效果 -->
+  <div class="leaf-container" id="leafContainer"></div>
+
+  <!-- 1. 頂部固定毛玻璃導覽列 -->
+  <header class="glass-navbar">
+    <a href="#" class="nav-brand">J <span>&</span> E</a>
+    
+    <ul class="nav-links">
+      <li><a href="#story">關於我們</a></li>
+      <li><a href="#details">婚禮詳情</a></li>
+      <li><a href="#dresscode">Dress Code</a></li>
+      <li><a href="#transport">交通指引</a></li>
+      <li><a href="#rsvp">出席回函</a></li>
+    </ul>
+
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <button class="audio-btn" id="audioToggle" title="點擊播放背景音樂">♪</button>
+      <button class="mobile-menu-toggle" id="mobileMenuBtn">☰</button>
+    </div>
+  </header>
+
+  <!-- 手機抽屜選單 -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="#story" class="mobile-nav-link">關於我們 ABOUT US</a>
+    <a href="#details" class="mobile-nav-link">婚禮詳情 DETAILS</a>
+    <a href="#dresscode" class="mobile-nav-link">著裝建議 DRESS CODE</a>
+    <a href="#transport" class="mobile-nav-link">交通指引 LOCATION</a>
+    <a href="#rsvp" class="mobile-nav-link">出席回函 INVITATION</a>
+  </div>
+
+  <!-- 2. 首頁全螢幕封面 -->
+  <section class="hero" id="home">
+    <div class="hero-badge">Wedding Celebration</div>
+    <h1 class="hero-title">Julian <span class="amp">&</span> Evelyn</h1>
+    <p class="hero-subtitle">2027 . 01 . 23 ｜ 台北士林萬麗酒店</p>
+    
+    <!-- 藝術倒數計時器 (獨立白色微光卡片 + 垂直金細線分隔) -->
+    <div class="countdown-wrapper">
+      <div class="countdown-container">
+        <div class="timer-card">
+          <div class="timer-num" id="days">00</div>
+          <div class="timer-unit">Days</div>
+        </div>
+        <div class="timer-divider"></div>
+        <div class="timer-card">
+          <div class="timer-num" id="hours">00</div>
+          <div class="timer-unit">Hours</div>
+        </div>
+        <div class="timer-divider"></div>
+        <div class="timer-card">
+          <div class="timer-num" id="minutes">00</div>
+          <div class="timer-unit">Mins</div>
+        </div>
+        <div class="timer-divider"></div>
+        <div class="timer-card">
+          <div class="timer-num" id="seconds">00</div>
+          <div class="timer-unit">Secs</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 關於我們 -->
+  <section id="story">
+    <div class="section-header">
+      <div class="sub-en">Our Story</div>
+      <h2>關於我們</h2>
+      <div class="decor-leaf">❦</div>
+    </div>
+    <div class="story-card">
+      <p>從最初的偶然相遇，到並肩走過無數個春日盛放與秋冬溫暖。</p>
+      <p>我們在對方的眼中看見了未來的模樣，也學會了在日常的微小細節中珍惜彼此。<br>這份愛，像林間的微風般輕柔舒緩，卻如深林墨綠的枝椏般深植大地。</p>
+      <p>誠摯邀請見證我們一路走來的珍貴家人與好友，在此刻一同舉杯，分享這份永恆的喜悅。</p>
+      <div class="signature">Julian & Evelyn</div>
+    </div>
+  </section>
+
+  <!-- 4. 婚禮流程 (垂直 V-Card 設計) -->
+  <section id="details">
+    <div class="section-header">
+      <div class="sub-en">Itinerary</div>
+      <h2>婚禮流程</h2>
+      <div class="decor-leaf">❦</div>
+    </div>
+
+    <div class="v-card-timeline">
+      <div class="v-card">
+        <div class="v-card-left">
+          <div class="v-time">16:00</div>
+          <div class="v-details">
+            <h4>證婚儀式開始</h4>
+            <p>神聖誓言宣讀、交換對戒與親友深情祝福</p>
+          </div>
+        </div>
+        <span class="v-tag">Ceremony</span>
+      </div>
+
+      <div class="v-card">
+        <div class="v-card-left">
+          <div class="v-time">17:30</div>
+          <div class="v-details">
+            <h4>晚宴迎賓入場</h4>
+            <p>品嚐迎賓特調、入席與重聚歡談時光</p>
+          </div>
+        </div>
+        <span class="v-tag">Welcome</span>
+      </div>
+
+      <div class="v-card">
+        <div class="v-card-left">
+          <div class="v-time">18:00</div>
+          <div class="v-details">
+            <h4>慶祝晚宴準時開席</h4>
+            <p>萬麗星級佳餚、幸福互動、敬酒與音樂饗宴</p>
+          </div>
+        </div>
+        <span class="v-tag">Banquet</span>
+      </div>
+
+      <div class="v-card">
+        <div class="v-card-left">
+          <div class="v-time">21:00</div>
+          <div class="v-details">
+            <h4>幸福合影與送客</h4>
+            <p>領取新人伴手禮、合影定格珍貴美好夜晚</p>
+          </div>
+        </div>
+        <span class="v-tag">Farewell</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Dress Code 著裝建議 -->
+  <section id="dresscode">
+    <div class="section-header">
+      <div class="sub-en">Dress Code</div>
+      <h2>著裝建議</h2>
+      <div class="decor-leaf">❦</div>
+    </div>
+
+    <div class="dress-code-card">
+      <p class="dress-code-intro">
+        為使婚禮畫面更具典雅溫馨氛圍，誠摯邀請貴賓穿著以下大地暖色系服飾出席：
+      </p>
+
+      <div class="palette-grid">
+        <!-- 色票 1: 奶茶色 -->
+        <div class="swatch-item">
+          <div class="swatch-circle" style="background-color: #C8AD93;"></div>
+          <div class="color-name-zh">奶茶色</div>
+          <div class="color-name-en">Milk Tea Beige</div>
+        </div>
+
+        <!-- 色票 2: 米白色 -->
+        <div class="swatch-item">
+          <div class="swatch-circle" style="background-color: #EFE6DD; border-color: #E2D7CC;"></div>
+          <div class="color-name-zh">米白色</div>
+          <div class="color-name-en">Beige</div>
+        </div>
+
+        <!-- 色票 3: 淺咖啡色 -->
+        <div class="swatch-item">
+          <div class="swatch-circle" style="background-color: #A68064;"></div>
+          <div class="color-name-zh">淺咖啡色</div>
+          <div class="color-name-en">Light Brown</div>
+        </div>
+
+        <!-- 色票 4: 焦糖色 -->
+        <div class="swatch-item">
+          <div class="swatch-circle" style="background-color: #8A5A36;"></div>
+          <div class="color-name-zh">焦糖色</div>
+          <div class="color-name-en">Caramel</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 交通指引 (手風琴摺疊面板) -->
+  <section id="transport">
+    <div class="section-header">
+      <div class="sub-en">Location & Transit</div>
+      <h2>交通指引</h2>
+      <div class="decor-leaf">❦</div>
+    </div>
+
+    <div class="venue-info-box">
+      <h3>台北士林萬麗酒店</h3>
+      <p><span class="nowrap-keyword">台北市士林區中山北路五段 470 巷 8 號</span></p>
+    </div>
+
+    <div class="accordion-container">
+      <!-- 1. 捷運 -->
+      <div class="accordion-item active">
+        <button class="accordion-header" type="button">
+          <span class="acc-title">
+            <span class="acc-icon">🚇</span>
+            <span>大眾運輸 (捷運指南)</span>
+          </span>
+          <span class="arrow-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          搭乘台北捷運淡水信義線（紅線）至<span class="nowrap-keyword">【士林站】2 號出口</span>出站，步行約 <span class="nowrap-keyword">5-6 分鐘</span>即可順利抵達飯店大廳。
+        </div>
+      </div>
+
+      <!-- 2. 自行前往開車與停車 -->
+      <div class="accordion-item">
+        <button class="accordion-header" type="button">
+          <span class="acc-title">
+            <span class="acc-icon">🚗</span>
+            <span>自行前往 (導航與停車資訊)</span>
+          </span>
+          <span class="arrow-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          導航搜尋至<span class="nowrap-keyword">【台北士林萬麗酒店】</span>，地址為<span class="nowrap-keyword">台北市士林區中山北路五段 470 巷</span>。<br>
+          飯店設有專屬地下停車場，提供婚宴賓客免費停車消磁折抵，場內亦設有電動車充電站供貴賓使用。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. 出席回函 (最底端純淨表單，已精準對接 Google Form) -->
+  <section id="rsvp">
+    <div class="section-header">
+      <div class="sub-en">Wedding Attendance</div>
+      <h2>出席回函</h2>
+      <div class="decor-leaf">❦</div>
+    </div>
+
+    <div class="rsvp-card">
+      <!-- 隱藏式 Iframe，提交不跳頁 -->
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+      
+      <!-- 已成功綁定您的 Google 表單 -->
+      <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdKdSa3obZcQYb_X2ooCiPvX-toPnm0IjvBkMrRApDEojLk6Q/formResponse" method="POST" target="hidden_iframe">
+        
+        <!-- 1. 姓名 & 2. 電子信箱 -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="entry_name">姓名<span class="en-label">NAME *</span></label>
+            <input type="text" id="entry_name" name="entry.623988314" class="form-control" placeholder="" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="entry_email">電子信箱<span class="en-label">EMAIL *</span></label>
+            <input type="email" id="entry_email" name="entry.1372504659" class="form-control" placeholder="" required>
+          </div>
+        </div>
+
+        <!-- 3. 與新人關係 -->
+        <div class="form-group">
+          <label class="form-label" for="entry_relation">與新人關係<span class="en-label">RELATIONSHIP *</span></label>
+          <select id="entry_relation" name="entry.603976185" class="form-control" required>
+            <option value="" disabled selected>請選擇您與新人的關係</option>
+            <option value="男方家人親戚">男方家人親戚</option>
+            <option value="女方家人親戚">女方家人親戚</option>
+            <option value="男方親友">男方親友</option>
+            <option value="女方親友">女方親友</option>
+            <option value="男方同事">男方同事</option>
+            <option value="女方同事">女方同事</option>
+            <option value="共同朋友">共同朋友</option>
+          </select>
+        </div>
+
+        <!-- 4. 飲食需求 -->
+        <div class="form-group">
+          <label class="form-label" for="entry_diet">飲食偏好<span class="en-label">DIETARY PREFERENCES *</span></label>
+          <select id="entry_diet" name="entry.1309346765" class="form-control" required>
+            <option value="" disabled selected>請選擇飲食偏好</option>
+            <option value="葷食">葷食</option>
+            <option value="全素">全素</option>
+            <option value="蛋奶素">蛋奶素</option>
+            <option value="其他特殊需求">其他特殊需求</option>
+          </select>
+        </div>
+
+        <!-- 5. 證婚儀式人數 & 6. 宴客出席人數 -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="entry_ceremony_count">證婚儀式出席人數<span class="en-label">CEREMONY ATTENDANCE *</span></label>
+            <input type="number" id="entry_ceremony_count" name="entry.611952378" class="form-control" min="0" max="99" placeholder="請輸入人數（若不克參加請填 0）" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="entry_banquet_count">宴客出席人數<span class="en-label">BANQUET ATTENDANCE *</span></label>
+            <input type="number" id="entry_banquet_count" name="entry.1260045809" class="form-control" min="0" max="99" placeholder="請輸入人數（若不克參加請填 0）" required>
+          </div>
+        </div>
+
+        <!-- 7. 是否有小孩 (兒童座椅需求) -->
+        <div class="form-group">
+          <label class="form-label" for="entry_child">是否有小孩同行<span class="en-label">CHILDREN & HIGH CHAIR *</span></label>
+          <select id="entry_child" name="entry.596231680" class="form-control" required>
+            <option value="" disabled selected>請選擇幼童狀況與座椅需求</option>
+            <option value="否，無小孩同行">否，無小孩同行</option>
+            <option value="是，不需要兒童椅">是，不需要兒童椅</option>
+            <option value="需要1張兒童椅">需要1張兒童椅</option>
+            <option value="需要2張以上兒童椅">需要2張以上兒童椅</option>
+          </select>
+        </div>
+
+        <!-- 8. 給新人的一段祝福 -->
+        <div class="form-group">
+          <label class="form-label" for="entry_blessing">給新人的一段祝福<span class="en-label">BLESSING & WISHES</span></label>
+          <textarea id="entry_blessing" name="entry.732076095" class="form-control" rows="3" placeholder=""></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <span>確認送出回函</span>
+          <span>✦</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 感謝彈窗 (Modal) -->
+  <div class="modal-overlay" id="thankYouModal">
+    <div class="modal-box">
+      <div class="modal-icon">❦</div>
+      <h3>感謝您的回覆</h3>
+      <p>我們已收到您的出席回函資訊。<br>期待在士林萬麗酒店與您一同見證這份幸福！</p>
+      <button class="btn-modal-close" id="modalCloseBtn">確定</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>JULIAN & EVELYN ｜ 2027.01.23</p>
+    <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">RENAISSANCE TAIPEI SHIHLIN HOTEL</p>
+  </footer>
+
+  <script>
+    /* 1. 綠葉飄落生成 */
+    const leafContainer = document.getElementById('leafContainer');
+    function createLeaf() {
+      const leaf = document.createElement('div');
+      leaf.classList.add('leaf');
+      leaf.style.left = Math.random() * 100 + 'vw';
+      leaf.style.animationDuration = (Math.random() * 8 + 12) + 's';
+      leaf.style.opacity = Math.random() * 0.4 + 0.3;
+      const scale = Math.random() * 0.6 + 0.7;
+      leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
+      leafContainer.appendChild(leaf);
+      setTimeout(() => leaf.remove(), 20000);
+    }
+    setInterval(createLeaf, 2200);
+
+    /* 2. 婚禮倒數計時：設定為 2027年01月23日 16:00 PM */
+    const weddingDate = new Date('2027-01-23T16:00:00+08:00').getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+
+      if (diff > 0) {
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = d < 10 ? '0' + d : d;
+        document.getElementById('hours').textContent = h < 10 ? '0' + h : h;
+        document.getElementById('minutes').textContent = m < 10 ? '0' + m : m;
+        document.getElementById('seconds').textContent = s < 10 ? '0' + s : s;
+      } else {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    /* 3. 手風琴摺疊面板切換 */
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    /* 4. 手機抽屜選單切換 */
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('active');
+    });
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.classList.remove('active');
+      });
+    });
+
+    /* 5. 豎琴純和弦背景氛圍音 (Web Audio API) */
+    let audioCtx = null;
+    let isPlaying = false;
+    let audioInterval = null;
+    const audioBtn = document.getElementById('audioToggle');
+
+    const chords = [
+      [261.63, 329.63, 392.00, 523.25], // C
+      [220.00, 261.63, 329.63, 440.00], // Am
+      [174.61, 220.00, 261.63, 349.23], // F
+      [196.00, 246.94, 293.66, 392.00]  // G
+    ];
+
+    function playArpeggio() {
+      if (!audioCtx) return;
+      const chord = chords[Math.floor(Math.random() * chords.length)];
+      chord.forEach((freq, index) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + index * 0.28);
+        gain.gain.setValueAtTime(0.001, audioCtx.currentTime + index * 0.28);
+        gain.gain.exponentialRampToValueAtTime(0.07, audioCtx.currentTime + index * 0.28 + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + index * 0.28 + 2.0);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(audioCtx.currentTime + index * 0.28);
+        osc.stop(audioCtx.currentTime + index * 0.28 + 2.2);
+      });
+    }
+
+    audioBtn.addEventListener('click', () => {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (!isPlaying) {
+        audioCtx.resume();
+        isPlaying = true;
+        audioBtn.textContent = '⏸';
+        audioBtn.style.background = 'var(--primary)';
+        audioBtn.style.color = '#fff';
+        playArpeggio();
+        audioInterval = setInterval(playArpeggio, 4200);
+      } else {
+        isPlaying = false;
+        audioBtn.textContent = '♪';
+        audioBtn.style.background = 'transparent';
+        audioBtn.style.color = 'var(--accent-gold-light)';
+        clearInterval(audioInterval);
+      }
+    });
+
+    /* 6. 表單提交、紙花彩帶與彈窗展示 */
+    const rsvpForm = document.getElementById('rsvpForm');
+    const modal = document.getElementById('thankYouModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const submitBtn = rsvpForm.querySelector('.btn-submit');
+    const hiddenIframe = document.getElementById('hidden_iframe');
+    let isSubmitting = false;
+
+    function triggerSuccess() {
+      confetti({
+        particleCount: 80,
+        spread: 75,
+        origin: { y: 0.65 },
+        colors: ['#1C3524', '#DFBF7A', '#C5A059', '#2D4C36', '#FAF8F5']
+      });
+
+      modal.classList.add('active');
+      rsvpForm.reset();
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `<span>確認送出回函</span><span>✦</span>`;
+      isSubmitting = false;
+    }
+
+    // 監聽表單提交事件：原生表單導向 hidden_iframe
+    rsvpForm.addEventListener('submit', function () {
+      isSubmitting = true;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>傳送中...</span><span>⏳</span>`;
+
+      // 保障觸發彈窗
+      setTimeout(() => {
+        if (isSubmitting) {
+          triggerSuccess();
+        }
+      }, 700);
+    });
+
+    // 當 hidden_iframe 收到回應時觸發
+    hiddenIframe.addEventListener('load', function () {
+      if (isSubmitting) {
+        triggerSuccess();
+      }
+    });
+
+    modalCloseBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
