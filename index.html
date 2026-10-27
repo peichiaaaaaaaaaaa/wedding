@@ -1081,12 +1081,11 @@
           <select id="entry_relation" name="entry.603976185" class="form-control" required>
             <option value="" disabled selected>請選擇您與新人的關係</option>
             <option value="男方家人親戚">男方家人親戚</option>
+            <option value="男方長官同事">男方長官同事</option>
+            <option value="男方同學、好友">男方同學、好友</option>
             <option value="女方家人親戚">女方家人親戚</option>
-            <option value="男方親友">男方親友</option>
-            <option value="女方親友">女方親友</option>
-            <option value="男方同事">男方同事</option>
-            <option value="女方同事">女方同事</option>
-            <option value="共同朋友">共同朋友</option>
+            <option value="女方長官同事">女方長官同事</option>
+            <option value="女方同學、好友">女方同學、好友</option>
           </select>
         </div>
 
@@ -1096,9 +1095,7 @@
           <select id="entry_diet" name="entry.1309346765" class="form-control" required>
             <option value="" disabled selected>請選擇飲食偏好</option>
             <option value="葷食">葷食</option>
-            <option value="全素">全素</option>
-            <option value="蛋奶素">蛋奶素</option>
-            <option value="其他特殊需求">其他特殊需求</option>
+            <option value="素食">素食</option>
           </select>
         </div>
 
@@ -1121,6 +1118,7 @@
           <select id="entry_child" name="entry.596231680" class="form-control" required>
             <option value="" disabled selected>請選擇幼童狀況與座椅需求</option>
             <option value="否，無小孩同行">否，無小孩同行</option>
+            <option value="是﹐不需要兒童椅">是﹐不需要兒童椅</option>
             <option value="是，不需要兒童椅">是，不需要兒童椅</option>
             <option value="需要1張兒童椅">需要1張兒童椅</option>
             <option value="需要2張以上兒童椅">需要2張以上兒童椅</option>
@@ -1298,21 +1296,33 @@
       isSubmitting = false;
     }
 
-    // 監聽表單提交事件：原生表單導向 hidden_iframe
-    rsvpForm.addEventListener('submit', function () {
+    // 雙重提交保障：Fetch no-cors + iframe fallback
+    rsvpForm.addEventListener('submit', function (e) {
       isSubmitting = true;
       submitBtn.disabled = true;
       submitBtn.innerHTML = `<span>傳送中...</span><span>⏳</span>`;
 
-      // 保障觸發彈窗
-      setTimeout(() => {
-        if (isSubmitting) {
-          triggerSuccess();
-        }
-      }, 700);
+      // 收集表單資料
+      const formData = new FormData(rsvpForm);
+      const postUrl = rsvpForm.action;
+
+      // 使用 fetch 進行背景直接送出
+      fetch(postUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      }).then(() => {
+        triggerSuccess();
+      }).catch(() => {
+        setTimeout(() => {
+          if (isSubmitting) {
+            triggerSuccess();
+          }
+        }, 800);
+      });
     });
 
-    // 當 hidden_iframe 收到回應時觸發
+    // 當 hidden_iframe 收到回應時的備援觸發
     hiddenIframe.addEventListener('load', function () {
       if (isSubmitting) {
         triggerSuccess();
