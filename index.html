@@ -840,6 +840,23 @@
       margin-bottom: 24px;
       line-height: 1.7;
     }
+    /* 提醒視窗未填清單樣式 */
+    .missing-fields-list {
+      background: var(--bg-surface);
+      border: 1px dashed var(--border-subtle);
+      border-radius: 10px;
+      padding: 12px 18px;
+      margin: 14px 0 20px;
+      text-align: left;
+      font-size: 13.5px;
+      color: var(--primary-dark);
+      list-style-type: disc;
+      padding-left: 32px;
+      line-height: 1.8;
+    }
+    .missing-fields-list li {
+      margin-bottom: 4px;
+    }
     .btn-modal-close {
       background: var(--primary);
       color: #fff;
@@ -1176,7 +1193,7 @@
       <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
       
       <!-- 已成功綁定您的 Google 表單 -->
-      <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdKdSa3obZcQYb_X2ooCiPvX-toPnm0IjvBkMrRApDEojLk6Q/formResponse" method="POST" target="hidden_iframe">
+      <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdKdSa3obZcQYb_X2ooCiPvX-toPnm0IjvBkMrRApDEojLk6Q/formResponse" method="POST" target="hidden_iframe" novalidate>
         
         <!-- 1. 姓名 & 2. 電子信箱 -->
         <div class="form-row">
@@ -1260,6 +1277,17 @@
       <h3>感謝您的回覆</h3>
       <p>我們已收到您的出席回函資訊。<br>期待在士林萬麗酒店與您一同見證這份幸福！</p>
       <button class="btn-modal-close" id="modalCloseBtn">確定</button>
+    </div>
+  </div>
+
+  <!-- 未填欄位提醒彈窗 (Missing Fields Modal) -->
+  <div class="modal-overlay" id="alertModal">
+    <div class="modal-box">
+      <div class="modal-icon" style="color: #D97706;">✦</div>
+      <h3 style="color: #92400E;">尚有資料未填寫</h3>
+      <p style="margin-bottom: 8px;">為了讓我們能妥善為您安排席位，請協助確認並填寫以下項目：</p>
+      <ul class="missing-fields-list" id="missingFieldsList"></ul>
+      <button class="btn-modal-close" id="alertCloseBtn">前往填寫</button>
     </div>
   </div>
 
@@ -1428,8 +1456,64 @@
     const rsvpForm = document.getElementById('rsvpForm');
     const modal = document.getElementById('thankYouModal');
     const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const alertModal = document.getElementById('alertModal');
+    const alertCloseBtn = document.getElementById('alertCloseBtn');
+    const missingFieldsList = document.getElementById('missingFieldsList');
     const hiddenIframe = document.getElementById('hidden_iframe');
     let isSubmitting = false;
+    let firstMissingElement = null;
+
+    // 檢查欄位是否齊全
+    function validateForm() {
+      const missing = [];
+      firstMissingElement = null;
+
+      const nameEl = document.getElementById('entry_name');
+      const emailEl = document.getElementById('entry_email');
+      const relationEl = document.getElementById('entry_relation');
+      const dietEl = document.getElementById('entry_diet');
+      const ceremonyEl = document.getElementById('entry_ceremony_count');
+      const banquetEl = document.getElementById('entry_banquet_count');
+      const childEl = document.getElementById('entry_child');
+
+      if (!nameEl.value.trim()) {
+        missing.push({ label: '姓名 (Name)', el: nameEl });
+      }
+
+      const emailVal = emailEl.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailVal) {
+        missing.push({ label: '電子信箱 (Email)', el: emailEl });
+      } else if (!emailRegex.test(emailVal)) {
+        missing.push({ label: '電子信箱格式不正確 (請包含 @ 及有效網域)', el: emailEl });
+      }
+
+      if (!relationEl.value) {
+        missing.push({ label: '與新人關係 (Relationship)', el: relationEl });
+      }
+
+      if (!dietEl.value) {
+        missing.push({ label: '飲食偏好 (葷食 / 素食)', el: dietEl });
+      }
+
+      if (ceremonyEl.value.trim() === '') {
+        missing.push({ label: '證婚儀式出席人數 (若不克參加請填 0)', el: ceremonyEl });
+      }
+
+      if (banquetEl.value.trim() === '') {
+        missing.push({ label: '宴客出席人數 (若不克參加請填 0)', el: banquetEl });
+      }
+
+      if (!childEl.value) {
+        missing.push({ label: '是否有小孩同行 / 兒童椅需求', el: childEl });
+      }
+
+      if (missing.length > 0) {
+        firstMissingElement = missing[0].el;
+      }
+
+      return missing;
+    }
 
     function triggerSuccess() {
       if (typeof confetti === 'function') {
@@ -1458,7 +1542,23 @@
     if (rsvpForm) {
       const submitBtn = rsvpForm.querySelector('.btn-submit');
 
-      rsvpForm.addEventListener('submit', function () {
+      rsvpForm.addEventListener('submit', function (e) {
+        const missingFields = validateForm();
+
+        // 若有任何欄位未填，攔截送出並跳出視窗
+        if (missingFields.length > 0) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (missingFieldsList) {
+            missingFieldsList.innerHTML = missingFields.map(item => `<li>${item.label}</li>`).join('');
+          }
+          if (alertModal) {
+            alertModal.classList.add('active');
+          }
+          return false;
+        }
+
         isSubmitting = true;
         if (submitBtn) {
           submitBtn.disabled = true;
@@ -1483,6 +1583,16 @@
           setTimeout(() => {
             if (isSubmitting) triggerSuccess();
           }, 800);
+        }
+      });
+    }
+
+    if (alertCloseBtn && alertModal) {
+      alertCloseBtn.addEventListener('click', () => {
+        alertModal.classList.remove('active');
+        if (firstMissingElement) {
+          firstMissingElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          firstMissingElement.focus();
         }
       });
     }
