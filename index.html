@@ -15,26 +15,26 @@
 
   <style>
     :root {
-      /* 深林墨綠、暖象牙白與復古金調 */
-      --primary: #1C3524;          /* 濃郁深森墨綠 */
-      --primary-dark: #122217;     /* 黑松墨綠近黑 */
-      --primary-light: #2D4C36;    /* 絲絨松針綠 */
-      --primary-subtle: #24402E;   /* 中層墨綠 */
-      --sage-muted: #536F5A;       /* 灰調鼠尾草草本綠 */
-      --sage-pale: #E1EBE3;        /* 淡草本柔色 */
-      --sage-mist: #D0DFD4;        /* 淺松霧綠 */
+      /* 深森墨綠、暖象牙白與啞光復古金 */
+      --primary: #1C3524;
+      --primary-dark: #122217;
+      --primary-light: #2D4C36;
+      --primary-subtle: #24402E;
+      --sage-muted: #536F5A;
+      --sage-pale: #E1EBE3;
+      --sage-mist: #D0DFD4;
       
-      --accent-gold: #C5A059;      /* 啞光復古金 */
-      --accent-gold-light: #DFBF7A;/* 璀璨金屬光 */
-      --gold-border: rgba(197, 160, 89, 0.4);
+      --accent-gold: #C5A059;
+      --accent-gold-light: #DFBF7A;
+      --gold-border: rgba(197, 160, 89, 0.45);
       
-      --bg-cream: #FAF8F5;         /* 暖象牙米白 */
-      --bg-surface: #EBF1EC;       /* 蘊含淡綠韻味的淺柔沙色 */
-      --card-white: #FFFFFF;       /* 羊皮紙純白微光 */
+      --bg-cream: #FAF8F5;
+      --bg-surface: #EFF4F0;
+      --card-white: #FFFFFF;
       
-      --text-main: #142419;        /* 極深墨綠近黑 */
-      --text-muted: #4B6151;       /* 沉靜墨綠字體 */
-      --border-subtle: #C9D6CC;    /* 綠調細緻淺邊框 */
+      --text-main: #142419;
+      --text-muted: #4B6151;
+      --border-subtle: #C9D6CC;
       
       --font-en: 'Cormorant Garamond', Georgia, serif;
       --font-tc: 'Noto Serif TC', "PingFang TC", "Microsoft JhengHei", serif;
@@ -62,7 +62,6 @@
       position: relative;
     }
 
-    /* 手機防折行關鍵詞類別 */
     .nowrap-keyword {
       display: inline-block;
       white-space: nowrap;
@@ -110,13 +109,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 40px;
+      padding: 0 36px;
       transition: all 0.3s ease;
       box-shadow: 0 4px 20px rgba(18, 34, 23, 0.25);
     }
     .nav-brand {
       font-family: var(--font-en);
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 500;
       letter-spacing: 3px;
       color: #FAF8F5;
@@ -127,11 +126,11 @@
     }
     .nav-brand span {
       color: var(--accent-gold);
-      font-size: 18px;
+      font-size: 19px;
     }
     .nav-links {
       display: flex;
-      gap: 26px;
+      gap: 24px;
       list-style: none;
       align-items: center;
     }
@@ -161,6 +160,28 @@
     }
     .nav-links a:hover::after {
       width: 100%;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--gold-border);
+      color: #FAF8F5;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: var(--font-en);
+    }
+    .lang-btn:hover {
+      background: var(--accent-gold);
+      color: var(--primary-dark);
+      border-color: var(--accent-gold);
     }
     .mobile-menu-toggle {
       display: none;
@@ -211,7 +232,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end; /* 將文字輕柔沉底，完整留出照片主體 */
+      justify-content: flex-end;
       text-align: center;
       padding: 0 20px 48px 20px;
       z-index: 2;
@@ -220,7 +241,6 @@
       user-select: none;
       -webkit-user-select: none;
     }
-    /* 雙圖層無縫淡入淡出 (Crossfade) */
     .hero-bg-layer {
       position: absolute;
       top: 0;
@@ -233,18 +253,16 @@
       transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 1;
     }
-    /* 輕微漸層底層，不擋畫面細節 */
     .hero-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba(16, 28, 20, 0.08) 0%, rgba(20, 36, 26, 0.12) 60%, rgba(18, 32, 23, 0.72) 100%);
+      background: linear-gradient(180deg, rgba(16, 28, 20, 0.08) 0%, rgba(20, 36, 26, 0.15) 55%, rgba(18, 32, 23, 0.72) 100%);
       z-index: 2;
       pointer-events: none;
     }
-    /* 右上方換照提示標籤 */
     .hero-photo-indicator {
       position: absolute;
       top: calc(var(--nav-height) + 16px);
@@ -274,7 +292,6 @@
       z-index: 3;
       pointer-events: none;
     }
-    /* 分頁小圓點 */
     .hero-dots {
       display: flex;
       gap: 6px;
@@ -513,7 +530,7 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
     }
     .v-card {
@@ -544,7 +561,7 @@
       font-weight: 600;
       color: var(--primary);
       letter-spacing: 1px;
-      min-width: 78px;
+      min-width: 88px;
     }
     .v-details h4 {
       font-size: 18px;
@@ -554,7 +571,7 @@
       letter-spacing: 1px;
     }
     .v-details p {
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--text-muted);
       margin: 0;
     }
@@ -567,6 +584,7 @@
       letter-spacing: 1px;
       font-weight: 400;
       box-shadow: 0 2px 6px rgba(28, 53, 36, 0.25);
+      white-space: nowrap;
     }
 
     /* Dress Code 著裝建議區塊 */
@@ -581,7 +599,7 @@
       margin: 0 auto;
     }
     .dress-code-intro {
-      font-size: 14.5px;
+      font-size: 15px;
       color: var(--text-muted);
       margin-bottom: 32px;
       line-height: 2;
@@ -704,6 +722,27 @@
       color: var(--text-muted);
       font-size: 14px;
     }
+    .map-btn-wrap {
+      margin-top: 14px;
+    }
+    .map-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #FAF8F5;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: 1px solid var(--accent-gold);
+      transition: all 0.3s ease;
+    }
+    .map-link-btn:hover {
+      background: var(--accent-gold);
+      color: var(--primary-dark);
+    }
 
     /* 出席回函卡片 */
     .rsvp-card {
@@ -790,7 +829,7 @@
       box-shadow: 0 12px 28px rgba(18, 34, 23, 0.35);
     }
 
-    /* 感謝彈窗 (Modal) */
+    /* 彈窗樣式 (Modal) */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -840,7 +879,6 @@
       margin-bottom: 24px;
       line-height: 1.7;
     }
-    /* 提醒視窗未填清單樣式 */
     .missing-fields-list {
       background: var(--bg-surface);
       border: 1px dashed var(--border-subtle);
@@ -883,6 +921,13 @@
       position: relative;
       z-index: 2;
     }
+    footer .footer-brand {
+      font-family: var(--font-en);
+      font-size: 24px;
+      color: var(--accent-gold-light);
+      margin-bottom: 10px;
+      letter-spacing: 4px;
+    }
     footer p {
       color: #E2ECE5;
     }
@@ -899,7 +944,7 @@
         display: block;
       }
       .hero-title {
-        letter-spacing: 2px;
+        letter-spacing: 3px;
       }
       .countdown-container {
         gap: 6px;
@@ -944,30 +989,30 @@
     <a href="#" class="nav-brand">L <span>&</span> P</a>
     
     <ul class="nav-links">
-      <li><a href="#story">關於我們</a></li>
-      <li><a href="#details">婚禮詳情</a></li>
-      <li><a href="#dresscode">Dress Code</a></li>
-      <li><a href="#transport">交通指引</a></li>
-      <li><a href="#rsvp">出席回函</a></li>
+      <li><a href="#story" data-i18n="nav_story">關於我們</a></li>
+      <li><a href="#details" data-i18n="nav_details">婚禮詳情</a></li>
+      <li><a href="#dresscode" data-i18n="nav_dresscode">Dress Code</a></li>
+      <li><a href="#transport" data-i18n="nav_transport">交通指引</a></li>
+      <li><a href="#rsvp" data-i18n="nav_rsvp">出席回函</a></li>
     </ul>
 
-    <div>
+    <div class="nav-actions">
+      <button class="lang-btn" id="langSwitchBtn" aria-label="語言切換">EN</button>
       <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="選單">☰</button>
     </div>
   </header>
 
   <!-- 手機抽屜選單 -->
   <div class="mobile-drawer" id="mobileDrawer">
-    <a href="#story" class="mobile-nav-link">關於我們 ABOUT US</a>
-    <a href="#details" class="mobile-nav-link">婚禮詳情 DETAILS</a>
-    <a href="#dresscode" class="mobile-nav-link">DRESS CODE</a>
-    <a href="#transport" class="mobile-nav-link">交通指引 LOCATION</a>
-    <a href="#rsvp" class="mobile-nav-link">出席回函 ATTENDANCE</a>
+    <a href="#story" class="mobile-nav-link" data-i18n="nav_story">關於我們 ABOUT US</a>
+    <a href="#details" class="mobile-nav-link" data-i18n="nav_details">婚禮詳情 DETAILS</a>
+    <a href="#dresscode" class="mobile-nav-link" data-i18n="nav_dresscode">DRESS CODE</a>
+    <a href="#transport" class="mobile-nav-link" data-i18n="nav_transport">交通指引 LOCATION</a>
+    <a href="#rsvp" class="mobile-nav-link" data-i18n="nav_rsvp">出席回函 ATTENDANCE</a>
   </div>
 
   <!-- 2. 首頁全螢幕封面（5張婚紗照點擊流暢輪播） -->
   <section class="hero" id="home" title="點擊切換下一張照片">
-    <!-- 雙圖層無縫淡入淡出 -->
     <div class="hero-bg-layer" id="heroBgCurrent"></div>
     <div class="hero-bg-layer" id="heroBgNext" style="opacity: 0;"></div>
     <div class="hero-overlay"></div>
@@ -975,7 +1020,7 @@
     <!-- 右上方精緻切換提示 -->
     <div class="hero-photo-indicator">
       <span id="photoCurrentIdx">1</span> / <span id="photoTotalCount">5</span>
-      <span style="font-size: 11px; opacity: 0.9;">點擊換照 ✦</span>
+      <span style="font-size: 11px; opacity: 0.9;" data-i18n="photo_tap_hint">點擊換照 ✦</span>
     </div>
 
     <div class="hero-content-wrap">
@@ -992,9 +1037,9 @@
     </div>
   </section>
 
-  <!-- 2-1. 獨立倒數計時區（置於封面下方，再也不會遮擋照片） -->
+  <!-- 2-1. 獨立倒數計時區（置於封面下方） -->
   <div class="countdown-bar-section">
-    <div class="countdown-bar-intro">Counting Down To Our Big Day</div>
+    <div class="countdown-bar-intro" data-i18n="countdown_title">Counting Down To Our Big Day</div>
     <div class="countdown-wrapper">
       <div class="countdown-container">
         <div class="timer-card">
@@ -1024,13 +1069,13 @@
   <section id="story">
     <div class="section-header">
       <div class="sub-en">Our Story</div>
-      <h2>關於我們</h2>
+      <h2 data-i18n="story_title">關於我們</h2>
       <div class="decor-leaf">❦</div>
     </div>
     <div class="story-card">
-      <p>從最初的偶然相遇，到並肩走過無數個春日盛放與秋冬溫暖。</p>
-      <p>我們在對方的眼中看見了未來的模樣，也學會了在日常的微小細節中珍惜彼此。<br>這份愛，像林間的微風般輕柔舒緩，卻如深林墨綠的枝椏般深植大地。</p>
-      <p>誠摯邀請見證我們一路走來的珍貴家人與好友，在此刻一同舉杯，分享這份永恆的喜悅。</p>
+      <p data-i18n="story_p1">從最初的偶然相遇，到並肩走過無數個春日盛放與秋冬溫暖。</p>
+      <p data-i18n="story_p2">我們在對方的眼中看見了未來的模樣，也學會了在日常的微小細節中珍惜彼此。<br>這份愛，像林間的微風般輕柔舒緩，卻如深林墨綠的枝椏般深植大地。</p>
+      <p data-i18n="story_p3">誠摯邀請見證我們一路走來的珍貴家人與好友，在此刻一同舉杯，分享這份永恆的喜悅。</p>
       <div class="signature">佑丞 & 珮嘉</div>
     </div>
   </section>
@@ -1039,53 +1084,57 @@
   <section id="details">
     <div class="section-header">
       <div class="sub-en">Itinerary</div>
-      <h2>婚禮流程</h2>
+      <h2 data-i18n="details_title">婚禮流程</h2>
       <div class="decor-leaf">❦</div>
     </div>
 
     <div class="v-card-timeline">
+      <!-- 證婚迎賓 -->
       <div class="v-card">
         <div class="v-card-left">
-          <div class="v-time">16:00</div>
+          <div class="v-time">10:30</div>
           <div class="v-details">
-            <h4>證婚儀式開始</h4>
-            <p>神聖誓言宣讀、交換對戒與親友深情祝福</p>
-          </div>
-        </div>
-        <span class="v-tag">Ceremony</span>
-      </div>
-
-      <div class="v-card">
-        <div class="v-card-left">
-          <div class="v-time">17:30</div>
-          <div class="v-details">
-            <h4>晚宴迎賓入場</h4>
-            <p>品嚐迎賓特調、入席與重聚歡談時光</p>
+            <h4 data-i18n="event1_title">花園證婚迎賓</h4>
+            <p data-i18n="event1_desc">士林官邸花園 戶外綠意迎賓入席</p>
           </div>
         </div>
         <span class="v-tag">Welcome</span>
       </div>
 
+      <!-- 證婚儀式 -->
       <div class="v-card">
         <div class="v-card-left">
-          <div class="v-time">18:00</div>
+          <div class="v-time">11:00</div>
           <div class="v-details">
-            <h4>慶祝晚宴準時開席</h4>
-            <p>萬麗星級佳餚、幸福互動、敬酒與音樂饗宴</p>
+            <h4 data-i18n="event2_title">浪漫證婚儀式</h4>
+            <p data-i18n="event2_desc">神聖誓言交換、對戒佩戴與親友幸福祝福</p>
+          </div>
+        </div>
+        <span class="v-tag">Ceremony</span>
+      </div>
+
+      <!-- 宴會入席 -->
+      <div class="v-card">
+        <div class="v-card-left">
+          <div class="v-time">12:00</div>
+          <div class="v-details">
+            <h4 data-i18n="event3_title">宴會廳迎賓入席</h4>
+            <p data-i18n="event3_desc">2F 宴會廳 享用迎賓特調與好友歡聚時光</p>
+          </div>
+        </div>
+        <span class="v-tag">Reception</span>
+      </div>
+
+      <!-- 慶祝午宴 -->
+      <div class="v-card">
+        <div class="v-card-left">
+          <div class="v-time">12:30</div>
+          <div class="v-details">
+            <h4 data-i18n="event4_title">慶祝婚宴準時開席</h4>
+            <p data-i18n="event4_desc">萬麗星級精緻美饌、溫馨互動與敬酒祝福</p>
           </div>
         </div>
         <span class="v-tag">Banquet</span>
-      </div>
-
-      <div class="v-card">
-        <div class="v-card-left">
-          <div class="v-time">21:00</div>
-          <div class="v-details">
-            <h4>幸福合影與送客</h4>
-            <p>領取新人伴手禮、合影定格珍貴美好夜晚</p>
-          </div>
-        </div>
-        <span class="v-tag">Farewell</span>
       </div>
     </div>
   </section>
@@ -1094,42 +1143,42 @@
   <section id="dresscode">
     <div class="section-header">
       <div class="sub-en">Dress Code</div>
-      <h2>著裝建議</h2>
+      <h2 data-i18n="dresscode_title">著裝建議</h2>
       <div class="decor-leaf">❦</div>
     </div>
 
     <div class="dress-code-card">
-      <p class="dress-code-intro">
-        為使婚禮畫面更具典雅溫馨氛圍，誠摯邀請貴賓穿著以下大地暖色系服飾出席：
+      <p class="dress-code-intro" data-i18n="dresscode_intro">
+        為使婚禮畫面更具典雅溫馨氛圍，誠摯邀請貴賓穿著森林大地色系、典雅正裝出席：
       </p>
 
       <div class="palette-grid">
-        <!-- 色票 1: 奶茶色 -->
+        <!-- 森林墨綠 -->
         <div class="swatch-item">
-          <div class="swatch-circle" style="background-color: #C8AD93;"></div>
-          <div class="color-name-zh">奶茶色</div>
-          <div class="color-name-en">Milk Tea Beige</div>
+          <div class="swatch-circle" style="background-color: #1C3524;"></div>
+          <div class="color-name-zh" data-i18n="color_forest">森林墨綠</div>
+          <div class="color-name-en">Forest Green</div>
         </div>
 
-        <!-- 色票 2: 米白色 -->
+        <!-- 啞光復古金 -->
         <div class="swatch-item">
-          <div class="swatch-circle" style="background-color: #EFE6DD; border-color: #E2D7CC;"></div>
-          <div class="color-name-zh">米白色</div>
-          <div class="color-name-en">Beige</div>
+          <div class="swatch-circle" style="background-color: #C5A059;"></div>
+          <div class="color-name-zh" data-i18n="color_gold">啞光金調</div>
+          <div class="color-name-en">Matte Gold</div>
         </div>
 
-        <!-- 色票 3: 淺咖啡色 -->
+        <!-- 暖大地咖啡 -->
         <div class="swatch-item">
           <div class="swatch-circle" style="background-color: #A68064;"></div>
-          <div class="color-name-zh">淺咖啡色</div>
-          <div class="color-name-en">Light Brown</div>
+          <div class="color-name-zh" data-i18n="color_earth">大地棕調</div>
+          <div class="color-name-en">Earth Tone</div>
         </div>
 
-        <!-- 色票 4: 焦糖色 -->
+        <!-- 象牙米白 -->
         <div class="swatch-item">
-          <div class="swatch-circle" style="background-color: #8A5A36;"></div>
-          <div class="color-name-zh">焦糖色</div>
-          <div class="color-name-en">Caramel</div>
+          <div class="swatch-circle" style="background-color: #EFE6DD; border-color: #E2D7CC;"></div>
+          <div class="color-name-zh" data-i18n="color_ivory">象牙米白</div>
+          <div class="color-name-en">Warm Ivory</div>
         </div>
       </div>
     </div>
@@ -1139,42 +1188,48 @@
   <section id="transport">
     <div class="section-header">
       <div class="sub-en">Location & Transit</div>
-      <h2>交通指引</h2>
+      <h2 data-i18n="transport_title">交通指引</h2>
       <div class="decor-leaf">❦</div>
     </div>
 
     <div class="venue-info-box">
-      <h3>台北士林萬麗酒店</h3>
+      <h3>台北士林萬麗酒店 (Renaissance Taipei Shihlin Hotel)</h3>
       <p><span class="nowrap-keyword">台北市士林區中山北路五段 470 巷 8 號</span></p>
+      <div class="map-btn-wrap">
+        <a href="https://maps.app.goo.gl/9bN62mG58V3h1u5V7" target="_blank" rel="noopener noreferrer" class="map-link-btn">
+          <span>開啟 Google 地圖導航</span>
+          <span>↗</span>
+        </a>
+      </div>
     </div>
 
     <div class="accordion-container">
-      <!-- 1. 捷運 -->
+      <!-- 捷運 -->
       <div class="accordion-item active">
         <button class="accordion-header" type="button">
           <span class="acc-title">
             <span class="acc-icon">🚇</span>
-            <span>大眾運輸 (捷運指南)</span>
+            <span data-i18n="transit_mrt_title">大眾運輸 (捷運指南)</span>
           </span>
           <span class="arrow-toggle">▼</span>
         </button>
-        <div class="accordion-content">
-          搭乘台北捷運淡水信義線（紅線）至<span class="nowrap-keyword">【士林站】2 號出口</span>出站，步行約 <span class="nowrap-keyword">5-6 分鐘</span>即可順利抵達飯店大廳。
+        <div class="accordion-content" data-i18n="transit_mrt_desc">
+          搭乘台北捷運淡水信義線（紅線）至<span class="nowrap-keyword">【士林站】2 號出口</span>出站，步行約 <span class="nowrap-keyword">5-6 分鐘</span>即可抵達台北士林萬麗酒店。
         </div>
       </div>
 
-      <!-- 2. 自行前往開車與停車 -->
+      <!-- 自行前往開車與停車 -->
       <div class="accordion-item">
         <button class="accordion-header" type="button">
           <span class="acc-title">
             <span class="acc-icon">🚗</span>
-            <span>自行前往 (導航與停車資訊)</span>
+            <span data-i18n="transit_car_title">自行前往 (導航與停車資訊)</span>
           </span>
           <span class="arrow-toggle">▼</span>
         </button>
-        <div class="accordion-content">
-          導航搜尋至<span class="nowrap-keyword">【台北士林萬麗酒店】</span>，地址為<span class="nowrap-keyword">台北市士林區中山北路五段 470 巷</span>。<br>
-          飯店設有專屬地下停車場，提供婚宴賓客免費停車消磁折抵，場內亦設有電動車充電站供貴賓使用。
+        <div class="accordion-content" data-i18n="transit_car_desc">
+          導航搜尋至<span class="nowrap-keyword">【台北士林萬麗酒店】</span>（台北市士林區中山北路五段 470 巷 8 號）。<br>
+          飯店設有專屬地下停車場，婚宴賓客可於離場前向飯店櫃檯辦理免費停車消磁折抵，場內亦設有電動車充電車位。
         </div>
       </div>
     </div>
@@ -1184,34 +1239,38 @@
   <section id="rsvp">
     <div class="section-header">
       <div class="sub-en">Wedding Attendance</div>
-      <h2>出席回函</h2>
+      <h2 data-i18n="rsvp_title">出席回函</h2>
       <div class="decor-leaf">❦</div>
     </div>
 
     <div class="rsvp-card">
-      <!-- 隱藏式 Iframe，提交不跳頁 -->
       <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
       
-      <!-- 已成功綁定您的 Google 表單 -->
       <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdKdSa3obZcQYb_X2ooCiPvX-toPnm0IjvBkMrRApDEojLk6Q/formResponse" method="POST" target="hidden_iframe" novalidate>
         
         <!-- 1. 姓名 & 2. 電子信箱 -->
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="entry_name">姓名<span class="en-label">NAME *</span></label>
+            <label class="form-label" for="entry_name">
+              <span data-i18n="lbl_name">姓名</span><span class="en-label">NAME *</span>
+            </label>
             <input type="text" id="entry_name" name="entry.623988314" class="form-control" placeholder="" required>
           </div>
           <div class="form-group">
-            <label class="form-label" for="entry_email">電子信箱<span class="en-label">EMAIL *</span></label>
+            <label class="form-label" for="entry_email">
+              <span data-i18n="lbl_email">電子信箱</span><span class="en-label">EMAIL *</span>
+            </label>
             <input type="email" id="entry_email" name="entry.1372504659" class="form-control" placeholder="" required>
           </div>
         </div>
 
         <!-- 3. 與新人關係 (精簡 6 項) -->
         <div class="form-group">
-          <label class="form-label" for="entry_relation">與新人關係<span class="en-label">RELATIONSHIP *</span></label>
+          <label class="form-label" for="entry_relation">
+            <span data-i18n="lbl_relation">與新人關係</span><span class="en-label">RELATIONSHIP *</span>
+          </label>
           <select id="entry_relation" name="entry.603976185" class="form-control" required>
-            <option value="" disabled selected>請選擇您與新人的關係</option>
+            <option value="" disabled selected data-i18n="opt_relation_default">請選擇您與新人的關係</option>
             <option value="男方家人親戚">男方家人親戚</option>
             <option value="男方長官同事">男方長官同事</option>
             <option value="男方同學、好友">男方同學、好友</option>
@@ -1223,9 +1282,11 @@
 
         <!-- 4. 飲食需求 (葷食 / 素食) -->
         <div class="form-group">
-          <label class="form-label" for="entry_diet">飲食偏好<span class="en-label">DIETARY PREFERENCES *</span></label>
+          <label class="form-label" for="entry_diet">
+            <span data-i18n="lbl_diet">飲食偏好</span><span class="en-label">DIETARY PREFERENCES *</span>
+          </label>
           <select id="entry_diet" name="entry.1309346765" class="form-control" required>
-            <option value="" disabled selected>請選擇飲食偏好</option>
+            <option value="" disabled selected data-i18n="opt_diet_default">請選擇飲食偏好</option>
             <option value="葷食">葷食</option>
             <option value="素食">素食</option>
           </select>
@@ -1234,49 +1295,56 @@
         <!-- 5. 證婚儀式人數 & 6. 宴客出席人數 -->
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="entry_ceremony_count">證婚儀式出席人數<span class="en-label">CEREMONY ATTENDANCE *</span></label>
+            <label class="form-label" for="entry_ceremony_count">
+              <span data-i18n="lbl_ceremony_cnt">證婚儀式出席人數</span><span class="en-label">CEREMONY ATTENDANCE *</span>
+            </label>
             <input type="number" id="entry_ceremony_count" name="entry.611952378" class="form-control" min="0" max="99" placeholder="請輸入人數（若不克參加請填 0）" required>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="entry_banquet_count">宴客出席人數<span class="en-label">BANQUET ATTENDANCE *</span></label>
+            <label class="form-label" for="entry_banquet_count">
+              <span data-i18n="lbl_banquet_cnt">宴客出席人數</span><span class="en-label">BANQUET ATTENDANCE *</span>
+            </label>
             <input type="number" id="entry_banquet_count" name="entry.1260045809" class="form-control" min="0" max="99" placeholder="請輸入人數（若不克參加請填 0）" required>
           </div>
         </div>
 
-        <!-- 7. 是否有小孩 (兒童座椅需求，精準比對特殊符號 ﹐) -->
+        <!-- 7. 是否有小孩 (兒童座椅需求) -->
         <div class="form-group">
-          <label class="form-label" for="entry_child">是否有小孩同行<span class="en-label">CHILDREN & HIGH CHAIR *</span></label>
+          <label class="form-label" for="entry_child">
+            <span data-i18n="lbl_child">是否有小孩同行</span><span class="en-label">CHILDREN & HIGH CHAIR *</span>
+          </label>
           <select id="entry_child" name="entry.596231680" class="form-control" required>
-            <option value="" disabled selected>請選擇幼童狀況與座椅需求</option>
-            <option value="否，無小孩同行">否，無小孩同行</option>
+            <option value="" disabled selected data-i18n="opt_child_default">請選擇幼童狀況與座椅需求</option>
+            <option value="否">否</option>
+            <option value="是﹐需要兒童椅">是﹐需要兒童椅</option>
             <option value="是﹐不需要兒童椅">是﹐不需要兒童椅</option>
-            <option value="需要1張兒童椅">需要1張兒童椅</option>
-            <option value="需要2張以上兒童椅">需要2張以上兒童椅</option>
           </select>
         </div>
 
         <!-- 8. 給新人的一段祝福 -->
         <div class="form-group">
-          <label class="form-label" for="entry_blessing">給新人的一段祝福<span class="en-label">BLESSING & WISHES</span></label>
+          <label class="form-label" for="entry_blessing">
+            <span data-i18n="lbl_blessing">給新人的一段祝福</span><span class="en-label">BLESSING & WISHES</span>
+          </label>
           <textarea id="entry_blessing" name="entry.732076095" class="form-control" rows="3" placeholder=""></textarea>
         </div>
 
         <button type="submit" class="btn-submit">
-          <span>確認送出回函</span>
+          <span data-i18n="btn_submit">確認送出回函</span>
           <span>✦</span>
         </button>
       </form>
     </div>
   </section>
 
-  <!-- 感謝彈窗 (Modal) -->
+  <!-- 成功彈窗 (Thank You Modal) -->
   <div class="modal-overlay" id="thankYouModal">
     <div class="modal-box">
       <div class="modal-icon">❦</div>
-      <h3>感謝您的回覆</h3>
-      <p>我們已收到您的出席回函資訊。<br>期待在士林萬麗酒店與您一同見證這份幸福！</p>
-      <button class="btn-modal-close" id="modalCloseBtn">確定</button>
+      <h3 data-i18n="modal_thank_title">感謝您的回覆</h3>
+      <p data-i18n="modal_thank_desc">我們已收到您的出席回函資訊。<br>期待在士林萬麗酒店與您一同見證這份幸福！</p>
+      <button class="btn-modal-close" id="modalCloseBtn" data-i18n="modal_btn_confirm">確定</button>
     </div>
   </div>
 
@@ -1284,20 +1352,21 @@
   <div class="modal-overlay" id="alertModal">
     <div class="modal-box">
       <div class="modal-icon" style="color: #D97706;">✦</div>
-      <h3 style="color: #92400E;">尚有資料未填寫</h3>
-      <p style="margin-bottom: 8px;">為了讓我們能妥善為您安排席位，請協助確認並填寫以下項目：</p>
+      <h3 style="color: #92400E;" data-i18n="modal_alert_title">尚有資料未填寫</h3>
+      <p style="margin-bottom: 8px;" data-i18n="modal_alert_desc">為了讓我們能妥善為您安排席位，請協助確認並填寫以下項目：</p>
       <ul class="missing-fields-list" id="missingFieldsList"></ul>
-      <button class="btn-modal-close" id="alertCloseBtn">前往填寫</button>
+      <button class="btn-modal-close" id="alertCloseBtn" data-i18n="modal_btn_fill">前往填寫</button>
     </div>
   </div>
 
   <footer>
+    <div class="footer-brand">L & P</div>
     <p>佑丞 & 珮嘉 ｜ 2027.01.23</p>
     <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">RENAISSANCE TAIPEI SHIHLIN HOTEL</p>
   </footer>
 
   <script>
-    /* 0. 封面 5 張婚紗照流暢點擊輪播 (完全清除衝突代碼) */
+    /* 0. 封面 5 張婚紗照流暢點擊輪播 */
     const coverPhotos = [
       'https://i.postimg.cc/1XJvcMK5/S-109551646-0.jpg',
       'https://i.postimg.cc/26YGsgcW/S-109551647-0.jpg',
@@ -1314,12 +1383,10 @@
     const photoTotalCountSpan = document.getElementById('photoTotalCount');
     const heroDotsContainer = document.getElementById('heroDots');
 
-    // 初始化總數
     if (photoTotalCountSpan) {
       photoTotalCountSpan.textContent = coverPhotos.length;
     }
 
-    // 建立小圓點
     if (heroDotsContainer) {
       heroDotsContainer.innerHTML = '';
       coverPhotos.forEach((_, i) => {
@@ -1329,13 +1396,11 @@
       });
     }
 
-    // 預加載圖片
     coverPhotos.forEach(src => {
       const img = new Image();
       img.src = src;
     });
 
-    // 設定初始底圖
     if (heroBgCurrent) {
       heroBgCurrent.style.backgroundImage = `url('${coverPhotos[0]}')`;
     }
@@ -1369,7 +1434,6 @@
       }, 800);
     }
 
-    // 點擊封面任意處切換
     if (heroSection) {
       heroSection.addEventListener('click', () => {
         switchNextPhoto();
@@ -1392,8 +1456,8 @@
     }
     setInterval(createLeaf, 2200);
 
-    /* 2. 婚禮倒數計時：設定為 2027年01月23日 16:00 PM */
-    const weddingDate = new Date('2027-01-23T16:00:00+08:00').getTime();
+    /* 2. 婚禮倒數計時：2027年01月23日 11:00 AM (CST) */
+    const weddingDate = new Date('2027-01-23T11:00:00+08:00').getTime();
     function updateCountdown() {
       const now = new Date().getTime();
       const diff = weddingDate - now;
@@ -1452,7 +1516,137 @@
       });
     }
 
-    /* 5. 表單提交、紙花彩帶與彈窗展示 (對接 Google Form) */
+    /* 5. 雙語切換 (中 / EN) */
+    const i18n = {
+      'zh': {
+        nav_story: '關於我們',
+        nav_details: '婚禮詳情',
+        nav_dresscode: 'Dress Code',
+        nav_transport: '交通指引',
+        nav_rsvp: '出席回函',
+        photo_tap_hint: '點擊換照 ✦',
+        countdown_title: 'Counting Down To Our Big Day',
+        story_title: '關於我們',
+        story_p1: '從最初的偶然相遇，到並肩走過無數個春日盛放與秋冬溫暖。',
+        story_p2: '我們在對方的眼中看見了未來的模樣，也學會了在日常的微小細節中珍惜彼此。<br>這份愛，像林間的微風般輕柔舒緩，卻如深林墨綠的枝椏般深植大地。',
+        story_p3: '誠摯邀請見證我們一路走來的珍貴家人與好友，在此刻一同舉杯，分享這份永恆的喜悅。',
+        details_title: '婚禮流程',
+        event1_title: '花園證婚迎賓',
+        event1_desc: '士林官邸花園 戶外綠意迎賓入席',
+        event2_title: '浪漫證婚儀式',
+        event2_desc: '神聖誓言交換、對戒佩戴與親友幸福祝福',
+        event3_title: '宴會廳迎賓入席',
+        event3_desc: '2F 宴會廳 享用迎賓特調與好友歡聚時光',
+        event4_title: '慶祝婚宴準時開席',
+        event4_desc: '萬麗星級精緻美饌、溫馨互動與敬酒祝福',
+        dresscode_title: '著裝建議',
+        dresscode_intro: '為使婚禮畫面更具典雅溫馨氛圍，誠摯邀請貴賓穿著森林大地色系、典雅正裝出席：',
+        color_forest: '森林墨綠',
+        color_gold: '啞光金調',
+        color_earth: '大地棕調',
+        color_ivory: '象牙米白',
+        transport_title: '交通指引',
+        transit_mrt_title: '大眾運輸 (捷運指南)',
+        transit_mrt_desc: '搭乘台北捷運淡水信義線（紅線）至<span class="nowrap-keyword">【士林站】2 號出口</span>出站，步行約 <span class="nowrap-keyword">5-6 分鐘</span>即可抵達台北士林萬麗酒店。',
+        transit_car_title: '自行前往 (導航與停車資訊)',
+        transit_car_desc: '導航搜尋至<span class="nowrap-keyword">【台北士林萬麗酒店】</span>（台北市士林區中山北路五段 470 巷 8 號）。<br>飯店設有專屬地下停車場，婚宴賓客可於離場前向飯店櫃檯辦理免費停車消磁折抵，場內亦設有電動車充電車位。',
+        rsvp_title: '出席回函',
+        lbl_name: '姓名',
+        lbl_email: '電子信箱',
+        lbl_relation: '與新人關係',
+        opt_relation_default: '請選擇您與新人的關係',
+        lbl_diet: '飲食偏好',
+        opt_diet_default: '請選擇飲食偏好',
+        lbl_ceremony_cnt: '證婚儀式出席人數',
+        lbl_banquet_cnt: '宴客出席人數',
+        lbl_child: '是否有小孩同行',
+        opt_child_default: '請選擇幼童狀況與座椅需求',
+        lbl_blessing: '給新人的一段祝福',
+        btn_submit: '確認送出回函',
+        modal_thank_title: '感謝您的回覆',
+        modal_thank_desc: '我們已收到您的出席回函資訊。<br>期待在士林萬麗酒店與您一同見證這份幸福！',
+        modal_btn_confirm: '確定',
+        modal_alert_title: '尚有資料未填寫',
+        modal_alert_desc: '為了讓我們能妥善為您安排席位，請協助確認並填寫以下項目：',
+        modal_btn_fill: '前往填寫'
+      },
+      'en': {
+        nav_story: 'ABOUT US',
+        nav_details: 'DETAILS',
+        nav_dresscode: 'DRESS CODE',
+        nav_transport: 'LOCATION',
+        nav_rsvp: 'RSVP',
+        photo_tap_hint: 'Tap to change ✦',
+        countdown_title: 'Counting Down To Our Big Day',
+        story_title: 'Our Story',
+        story_p1: 'From our very first encounter to walking together through every blooming spring and cozy winter.',
+        story_p2: 'In each other\'s eyes, we found our future, and learned to cherish every precious moment.<br>Our love is as gentle as the forest breeze, yet deeply rooted in faith and devotion.',
+        story_p3: 'We warmly invite our dearest family and friends to raise a glass and celebrate this lifelong happiness with us.',
+        details_title: 'Wedding Schedule',
+        event1_title: 'Garden Ceremony Welcome',
+        event1_desc: 'Outdoor Garden Welcome & Guest Seating',
+        event2_title: 'Wedding Ceremony',
+        event2_desc: 'Exchange of Vows, Rings & Blessing Moments',
+        event3_title: 'Banquet Reception',
+        event3_desc: '2F Grand Ballroom Cocktail & Social Hour',
+        event4_title: 'Celebration Banquet',
+        event4_desc: 'Gourmet Dining, Heartfelt Toasts & Music',
+        dresscode_title: 'Dress Code',
+        dresscode_intro: 'To create a harmonious and elegant celebration, we kindly invite you to dress in forest green, warm earth tones, or elegant formal attire:',
+        color_forest: 'Forest Green',
+        color_gold: 'Matte Gold',
+        color_earth: 'Earth Brown',
+        color_ivory: 'Warm Ivory',
+        transport_title: 'Location & Transit',
+        transit_mrt_title: 'Public Transit (MRT)',
+        transit_mrt_desc: 'Take the MRT Tamsui-Xinyi Line (Red Line) to <span class="nowrap-keyword">Shilin Station Exit 2</span>, and walk approximately <span class="nowrap-keyword">5-6 minutes</span> to Renaissance Taipei Shihlin Hotel.',
+        transit_car_title: 'Driving & Parking',
+        transit_car_desc: 'Navigate to <span class="nowrap-keyword">Renaissance Taipei Shihlin Hotel</span> (No. 8, Lane 470, Sec. 5, Zhongshan N. Rd., Shilin Dist.).<br>Complimentary parking validation is available at the front desk for all attending wedding guests.',
+        rsvp_title: 'RSVP Attendance',
+        lbl_name: 'Name',
+        lbl_email: 'Email',
+        lbl_relation: 'Relationship',
+        opt_relation_default: 'Please select your relationship',
+        lbl_diet: 'Dietary Preference',
+        opt_diet_default: 'Please select dietary preference',
+        lbl_ceremony_cnt: 'Ceremony Attendance',
+        lbl_banquet_cnt: 'Banquet Attendance',
+        lbl_child: 'Children & High Chair',
+        opt_child_default: 'Please select child & high chair needs',
+        lbl_blessing: 'Blessing & Wishes',
+        btn_submit: 'Submit RSVP',
+        modal_thank_title: 'Thank You for Responding',
+        modal_thank_desc: 'Your RSVP has been successfully received.<br>We look forward to celebrating our special day with you!',
+        modal_btn_confirm: 'OK',
+        modal_alert_title: 'Incomplete Information',
+        modal_alert_desc: 'To help us prepare your seating accurately, please complete the following items:',
+        modal_btn_fill: 'Go to Fields'
+      }
+    };
+
+    let currentLang = 'zh';
+    const langSwitchBtn = document.getElementById('langSwitchBtn');
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      if (langSwitchBtn) {
+        langSwitchBtn.textContent = lang === 'zh' ? 'EN' : '中';
+      }
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang] && i18n[lang][key]) {
+          el.innerHTML = i18n[lang][key];
+        }
+      });
+    }
+
+    if (langSwitchBtn) {
+      langSwitchBtn.addEventListener('click', () => {
+        setLanguage(currentLang === 'zh' ? 'en' : 'zh');
+      });
+    }
+
+    /* 6. 表單驗證、提交與防呆彈窗展示 (對接 Google Form) */
     const rsvpForm = document.getElementById('rsvpForm');
     const modal = document.getElementById('thankYouModal');
     const modalCloseBtn = document.getElementById('modalCloseBtn');
@@ -1463,7 +1657,6 @@
     let isSubmitting = false;
     let firstMissingElement = null;
 
-    // 檢查欄位是否齊全
     function validateForm() {
       const missing = [];
       firstMissingElement = null;
@@ -1476,36 +1669,38 @@
       const banquetEl = document.getElementById('entry_banquet_count');
       const childEl = document.getElementById('entry_child');
 
+      const isZh = currentLang === 'zh';
+
       if (!nameEl.value.trim()) {
-        missing.push({ label: '姓名 (Name)', el: nameEl });
+        missing.push({ label: isZh ? '姓名 (Name)' : 'Name', el: nameEl });
       }
 
       const emailVal = emailEl.value.trim();
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailVal) {
-        missing.push({ label: '電子信箱 (Email)', el: emailEl });
+        missing.push({ label: isZh ? '電子信箱 (Email)' : 'Email', el: emailEl });
       } else if (!emailRegex.test(emailVal)) {
-        missing.push({ label: '電子信箱格式不正確 (請包含 @ 及有效網域)', el: emailEl });
+        missing.push({ label: isZh ? '電子信箱格式不正確 (請包含 @ 及有效網域)' : 'Invalid Email format', el: emailEl });
       }
 
       if (!relationEl.value) {
-        missing.push({ label: '與新人關係 (Relationship)', el: relationEl });
+        missing.push({ label: isZh ? '與新人關係 (Relationship)' : 'Relationship', el: relationEl });
       }
 
       if (!dietEl.value) {
-        missing.push({ label: '飲食偏好 (葷食 / 素食)', el: dietEl });
+        missing.push({ label: isZh ? '飲食偏好 (葷食 / 素食)' : 'Dietary Preference', el: dietEl });
       }
 
       if (ceremonyEl.value.trim() === '') {
-        missing.push({ label: '證婚儀式出席人數 (若不克參加請填 0)', el: ceremonyEl });
+        missing.push({ label: isZh ? '證婚儀式出席人數 (若不克參加請填 0)' : 'Ceremony Attendance (Enter 0 if unable)', el: ceremonyEl });
       }
 
       if (banquetEl.value.trim() === '') {
-        missing.push({ label: '宴客出席人數 (若不克參加請填 0)', el: banquetEl });
+        missing.push({ label: isZh ? '宴客出席人數 (若不克參加請填 0)' : 'Banquet Attendance (Enter 0 if unable)', el: banquetEl });
       }
 
       if (!childEl.value) {
-        missing.push({ label: '是否有小孩同行 / 兒童椅需求', el: childEl });
+        missing.push({ label: isZh ? '是否有小孩同行 / 兒童椅需求' : 'Children & High Chair Requirement', el: childEl });
       }
 
       if (missing.length > 0) {
@@ -1533,7 +1728,7 @@
         rsvpForm.reset();
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = `<span>確認送出回函</span><span>✦</span>`;
+          submitBtn.innerHTML = `<span>${currentLang === 'zh' ? '確認送出回函' : 'Submit RSVP'}</span><span>✦</span>`;
         }
       }
       isSubmitting = false;
@@ -1545,7 +1740,6 @@
       rsvpForm.addEventListener('submit', function (e) {
         const missingFields = validateForm();
 
-        // 若有任何欄位未填，攔截送出並跳出視窗
         if (missingFields.length > 0) {
           e.preventDefault();
           e.stopPropagation();
@@ -1562,10 +1756,9 @@
         isSubmitting = true;
         if (submitBtn) {
           submitBtn.disabled = true;
-          submitBtn.innerHTML = `<span>傳送中...</span><span>⏳</span>`;
+          submitBtn.innerHTML = `<span>${currentLang === 'zh' ? '傳送中...' : 'Sending...'}</span><span>⏳</span>`;
         }
 
-        // 雙重保證：fetch 背景發送 + iframe fallback
         try {
           const formData = new FormData(rsvpForm);
           fetch(rsvpForm.action, {
