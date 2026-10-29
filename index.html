@@ -1251,12 +1251,12 @@
           </div>
         </div>
 
-        <!-- 3. 喜帖寄送地點 -->
+        <!-- 3. 喜帖寄送地點 (必填) -->
         <div class="form-group">
           <label class="form-label" for="entry_address">
-            <span data-i18n="lbl_address">喜帖寄送地點</span><span class="en-label">MAILING ADDRESS</span>
+            <span data-i18n="lbl_address">喜帖寄送地點</span><span class="en-label">MAILING ADDRESS *</span>
           </label>
-          <input type="text" id="entry_address" name="entry.891248963" class="form-control" placeholder="">
+          <input type="text" id="entry_address" name="entry.891248963" class="form-control" placeholder="(沒填會收不到美美的喜帖喔)" required>
         </div>
 
         <!-- 4. 與新人關係 -->
@@ -1647,6 +1647,7 @@
       firstMissingElement = null;
 
       const nameEl = document.getElementById('entry_name');
+      const addressEl = document.getElementById('entry_address');
       const relationEl = document.getElementById('entry_relation');
       const dietEl = document.getElementById('entry_diet');
       const ceremonyEl = document.getElementById('entry_ceremony_count');
@@ -1664,6 +1665,10 @@
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (emailVal && !emailRegex.test(emailVal)) {
         missing.push({ label: isZh ? '電子信箱格式不正確 (請包含 @ 及有效網域)' : 'Invalid Email format', el: emailEl });
+      }
+
+      if (!addressEl.value.trim()) {
+        missing.push({ label: isZh ? '喜帖寄送地點 (Mailing Address)' : 'Mailing Address', el: addressEl });
       }
 
       if (!relationEl.value) {
