@@ -120,18 +120,26 @@
       letter-spacing: 3px;
       color: #FAF8F5;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-brand span {
+      color: var(--accent-gold);
+      font-size: 19px;
     }
     .nav-links {
       display: flex;
       gap: 28px;
       list-style: none;
+      align-items: center;
     }
     .nav-links a {
-      color: #FAF8F5;
       text-decoration: none;
-      font-size: 14.5px;
+      color: #E6EDE8;
+      font-size: 15px;
       letter-spacing: 1.5px;
-      font-weight: 500;
+      font-weight: 400;
       position: relative;
       transition: color 0.3s;
       padding-bottom: 4px;
@@ -163,8 +171,8 @@
       border: 1px solid var(--gold-border);
       color: #FAF8F5;
       border-radius: 20px;
-      padding: 4px 12px;
-      font-size: 12px;
+      padding: 5px 14px;
+      font-size: 13px;
       letter-spacing: 1px;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -179,7 +187,7 @@
       display: none;
       background: none;
       border: none;
-      font-size: 22px;
+      font-size: 24px;
       color: #FAF8F5;
       cursor: pointer;
     }
@@ -208,7 +216,7 @@
       padding: 12px 0;
       color: #FAF8F5;
       text-decoration: none;
-      font-size: 15px;
+      font-size: 17px;
       letter-spacing: 1.5px;
       transition: color 0.3s;
     }
@@ -251,7 +259,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba(16, 28, 20, 0.1) 0%, rgba(20, 36, 26, 0.2) 55%, rgba(18, 32, 23, 0.78) 100%);
+      background: linear-gradient(180deg, rgba(16, 28, 20, 0.08) 0%, rgba(20, 36, 26, 0.15) 55%, rgba(18, 32, 23, 0.72) 100%);
       z-index: 2;
       pointer-events: none;
     }
@@ -264,7 +272,7 @@
       color: var(--accent-gold-light);
       padding: 6px 14px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: 1.5px;
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -310,7 +318,7 @@
       gap: 12px;
       font-family: var(--font-en);
       letter-spacing: 4px;
-      font-size: 13px;
+      font-size: 14px;
       text-transform: uppercase;
       color: var(--accent-gold-light);
       margin-bottom: 8px;
@@ -346,8 +354,8 @@
       color: #FAF8F5;
       letter-spacing: 3px;
       margin-bottom: 14px;
-      font-weight: 500;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+      font-weight: 400;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
     }
     .hero-scroll-indicator {
       display: flex;
@@ -356,106 +364,125 @@
       color: var(--accent-gold-light);
       font-size: 12px;
       letter-spacing: 2px;
-      opacity: 0.95;
+      opacity: 0.9;
       animation: floatDown 2s ease-in-out infinite;
       margin-top: 4px;
       text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-      font-weight: 500;
     }
-
     @keyframes floatDown {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(6px); }
+      0%, 100% { transform: translateY(0); opacity: 0.85; }
+      50% { transform: translateY(6px); opacity: 1; }
     }
 
-    /* 獨立倒數計時區 */
+    /* 獨立倒數計時區塊 */
     .countdown-bar-section {
-      background: var(--primary-dark);
-      padding: 36px 20px;
-      color: #FAF8F5;
-      text-align: center;
+      background: linear-gradient(180deg, #162B1D 0%, #1A3323 100%);
+      padding: 42px 20px 46px;
+      border-top: 1px solid var(--gold-border);
       border-bottom: 1px solid var(--gold-border);
+      box-shadow: 0 10px 30px rgba(18, 34, 23, 0.25);
       position: relative;
-      z-index: 2;
+      z-index: 3;
+      text-align: center;
     }
     .countdown-bar-intro {
       font-family: var(--font-en);
-      font-size: 15px;
-      letter-spacing: 3px;
+      font-size: 14px;
+      letter-spacing: 3.5px;
       color: var(--accent-gold-light);
-      margin-bottom: 20px;
       text-transform: uppercase;
+      margin-bottom: 18px;
     }
     .countdown-wrapper {
-      display: flex;
-      justify-content: center;
+      margin: 0 auto;
+      max-width: 620px;
     }
     .countdown-container {
       display: flex;
       align-items: center;
-      gap: 16px;
+      justify-content: center;
+      gap: 14px;
     }
     .timer-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--gold-border);
+      background: rgba(255, 255, 255, 0.96);
       border-radius: 12px;
       padding: 16px 20px;
-      min-width: 80px;
-      backdrop-filter: blur(4px);
+      min-width: 82px;
+      box-shadow: 0 12px 28px -4px rgba(10, 20, 13, 0.35), 0 4px 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+    .timer-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent-gold));
+    }
+    .timer-card:hover {
+      transform: translateY(-2px);
     }
     .timer-num {
       font-family: var(--font-en);
-      font-size: 32px;
-      font-weight: 600;
-      color: #FFFFFF;
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 500;
+      color: var(--primary);
       line-height: 1;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     .timer-unit {
       font-size: 11px;
       letter-spacing: 2px;
-      color: var(--accent-gold-light);
+      color: var(--primary-light);
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 600;
     }
     .timer-divider {
       width: 1px;
-      height: 32px;
-      background: var(--gold-border);
-      opacity: 0.5;
+      height: 36px;
+      background: linear-gradient(180deg, transparent, var(--accent-gold-light), transparent);
+      opacity: 0.85;
     }
 
-    /* 各區塊通用標題 */
+    /* 區塊共用樣式 */
     section {
-      padding: 80px 20px;
-      max-width: 900px;
-      margin: 0 auto;
       position: relative;
       z-index: 2;
+      padding: 90px 24px;
+      max-width: 960px;
+      margin: 0 auto;
     }
     .section-header {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 56px;
     }
     .section-header .sub-en {
       font-family: var(--font-en);
-      font-size: 16px;
-      letter-spacing: 4px;
-      color: #8C6A21;
+      font-size: 15px;
+      letter-spacing: 3.5px;
+      color: #7D5C1A;
       text-transform: uppercase;
+      margin-bottom: 8px;
       font-weight: 600;
-      margin-bottom: 6px;
     }
     .section-header h2 {
-      font-size: 28px;
-      color: var(--primary-dark);
-      letter-spacing: 4px;
+      font-size: 30px;
+      color: var(--primary);
+      letter-spacing: 2.5px;
       font-weight: 500;
     }
-    .decor-leaf {
+    .section-header .decor-leaf {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 16px;
       color: var(--accent-gold);
-      font-size: 18px;
-      margin-top: 8px;
     }
 
     /* 關於我們 */
@@ -468,7 +495,7 @@
       box-shadow: 0 18px 40px rgba(18, 34, 23, 0.22);
       line-height: 2.2;
       color: #FAF8F5;
-      font-size: 15px;
+      font-size: 16.5px;
       position: relative;
       overflow: hidden;
     }
@@ -484,13 +511,13 @@
     }
     .story-card p {
       margin-bottom: 20px;
-      color: #E2ECE5;
+      color: #EAEFF2;
       position: relative;
       z-index: 1;
     }
     .signature {
       font-family: var(--font-tc);
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 400;
       color: var(--accent-gold-light);
       margin-top: 24px;
@@ -531,30 +558,30 @@
     }
     .v-time {
       font-family: var(--font-en);
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 600;
       color: var(--primary);
       letter-spacing: 1px;
       min-width: 88px;
     }
     .v-details h4 {
-      font-size: 18px;
+      font-size: 20px;
       color: var(--primary-dark);
       font-weight: 500;
       margin-bottom: 4px;
       letter-spacing: 1px;
     }
     .v-details p {
-      font-size: 14px;
-      color: var(--text-muted);
+      font-size: 15px;
+      color: var(--text-main);
       margin: 0;
       font-weight: 400;
     }
     .v-tag {
-      font-size: 12px;
+      font-size: 13px;
       background: var(--primary);
       color: #FAF8F5;
-      padding: 5px 14px;
+      padding: 6px 16px;
       border-radius: 20px;
       letter-spacing: 1px;
       font-weight: 400;
@@ -574,11 +601,10 @@
       margin: 0 auto;
     }
     .dress-code-intro {
-      font-size: 15.5px;
-      color: var(--primary-dark);
+      font-size: 16.5px;
+      color: var(--text-main);
       margin-bottom: 32px;
       line-height: 2;
-      font-weight: 400;
     }
     .palette-grid {
       display: grid;
@@ -606,7 +632,7 @@
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
     }
     .color-name-zh {
-      font-size: 14.5px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--primary-dark);
       margin-bottom: 2px;
@@ -615,70 +641,70 @@
     .color-name-en {
       font-family: var(--font-en);
       font-size: 13px;
-      color: #926F26;
+      color: #7D5C1A;
       letter-spacing: 1px;
       font-weight: 600;
     }
 
-    /* 交通指引卡片 */
-    .transport-container {
+    /* 交通指引展開卡片 */
+    .transit-container {
       max-width: 760px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
-    .transport-card {
+    .transit-card {
       background: var(--card-white);
-      border-radius: 14px;
+      border-radius: 12px;
       border: 1px solid var(--border-subtle);
-      box-shadow: 0 4px 18px rgba(22, 38, 27, 0.05);
-      padding: 24px 28px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      padding: 22px 26px;
     }
-    .transport-card-header {
+    .transit-card-header {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 17px;
-      color: var(--primary-dark);
+      font-size: 18px;
+      color: var(--primary);
       font-weight: 600;
       letter-spacing: 1px;
       margin-bottom: 12px;
-      padding-bottom: 10px;
+      padding-bottom: 8px;
       border-bottom: 1px dashed var(--border-subtle);
     }
-    .transport-card-header .acc-icon {
+    .transit-card-header .acc-icon {
       font-size: 20px;
+      color: var(--accent-gold);
     }
-    .transport-card-body {
-      font-size: 14.5px;
-      color: var(--primary-dark);
-      line-height: 2;
-      font-weight: 400;
+    .transit-card-content {
+      font-size: 15.5px;
+      color: var(--text-main);
+      line-height: 1.9;
     }
     .venue-info-box {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
     .venue-info-box h3 {
       font-size: 32px;
-      color: var(--primary-dark);
-      margin-bottom: 4px;
-      letter-spacing: 2px;
+      color: var(--primary);
+      margin-bottom: 6px;
+      letter-spacing: 1.5px;
       font-weight: 600;
     }
-    .venue-info-box .venue-en-title {
+    .venue-en-title {
       font-family: var(--font-en);
-      font-size: 20px;
-      color: #8C6A21;
+      font-size: 18px;
+      color: #7D5C1A;
       letter-spacing: 2px;
       margin-bottom: 12px;
       font-weight: 600;
     }
     .venue-info-box p {
-      color: var(--primary-dark);
-      font-size: 17px;
-      font-weight: 400;
+      color: var(--text-main);
+      font-size: 16px;
     }
     .map-btn-wrap {
       margin-top: 16px;
@@ -690,9 +716,9 @@
       background: var(--primary);
       color: #FAF8F5;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 14.5px;
       letter-spacing: 1px;
-      padding: 8px 20px;
+      padding: 10px 24px;
       border-radius: 20px;
       border: 1px solid var(--accent-gold);
       transition: all 0.3s ease;
@@ -722,17 +748,11 @@
       align-items: start;
     }
     .form-row .form-group {
-      display: flex;
-      flex-direction: column;
-      height: auto;
       margin-bottom: 24px;
-    }
-    .form-row .form-group .form-control {
-      margin-top: 0;
     }
     .form-label {
       display: block;
-      font-size: 13px;
+      font-size: 14.5px;
       font-weight: 500;
       color: var(--primary);
       letter-spacing: 1px;
@@ -740,17 +760,17 @@
     }
     .form-label .en-label {
       font-family: var(--font-en);
-      font-size: 12px;
-      color: #8C6A21;
+      font-size: 11px;
+      color: #7D5C1A;
       margin-left: 6px;
       font-weight: 600;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
     }
     .form-control {
       width: 100%;
       padding: 12px 16px;
       font-family: var(--font-tc);
-      font-size: 14px;
+      font-size: 15px;
       background: var(--bg-cream);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
@@ -779,7 +799,7 @@
       border: none;
       border-radius: 30px;
       padding: 16px;
-      font-size: 15px;
+      font-size: 16.5px;
       letter-spacing: 3px;
       font-weight: 400;
       cursor: pointer;
@@ -837,13 +857,13 @@
       margin-bottom: 12px;
     }
     .modal-box h3 {
-      font-size: 22px;
+      font-size: 24px;
       color: var(--primary);
       margin-bottom: 8px;
     }
     .modal-box p {
-      font-size: 14px;
-      color: var(--text-muted);
+      font-size: 15.5px;
+      color: var(--text-main);
       margin-bottom: 24px;
       line-height: 1.7;
     }
@@ -854,7 +874,7 @@
       padding: 12px 18px;
       margin: 14px 0 20px;
       text-align: left;
-      font-size: 13.5px;
+      font-size: 15px;
       color: var(--primary-dark);
       list-style-type: disc;
       padding-left: 32px;
@@ -869,7 +889,7 @@
       border: none;
       padding: 10px 28px;
       border-radius: 20px;
-      font-size: 14px;
+      font-size: 15px;
       letter-spacing: 1.5px;
       cursor: pointer;
       transition: background 0.3s;
@@ -883,7 +903,7 @@
       color: #A9BDB0;
       text-align: center;
       padding: 60px 20px 40px;
-      font-size: 13px;
+      font-size: 14.5px;
       letter-spacing: 2px;
       border-top: 1px solid rgba(197, 160, 89, 0.25);
       position: relative;
@@ -891,13 +911,20 @@
     }
     footer .footer-brand {
       font-family: var(--font-en);
-      font-size: 24px;
+      font-size: 26px;
       color: var(--accent-gold-light);
       margin-bottom: 10px;
       letter-spacing: 4px;
     }
     footer p {
       color: #E2ECE5;
+    }
+    footer .footer-venue {
+      font-size: 13.5px;
+      margin-top: 8px;
+      letter-spacing: 2px;
+      color: var(--accent-gold-light);
+      font-weight: 500;
     }
 
     /* 手機版排版調適 */
@@ -944,138 +971,6 @@
       .rsvp-card {
         padding: 30px 20px;
       }
-    }
-
-    /* 調整字體大小提升可讀性（維持佑丞 & 珮嘉標題尺寸不變） */
-    .nav-brand {
-      font-size: 28px;
-    }
-    .nav-links a {
-      font-size: 16px;
-    }
-    .lang-btn {
-      font-size: 13px;
-      padding: 5px 14px;
-    }
-    .mobile-drawer a {
-      font-size: 17px;
-    }
-    .hero-photo-indicator {
-      font-size: 14px;
-    }
-    .hero-badge {
-      font-size: 15px;
-    }
-    .hero-subtitle {
-      font-size: 20px;
-    }
-    .hero-scroll-indicator {
-      font-size: 14px;
-    }
-    .countdown-bar-intro {
-      font-size: 17px;
-    }
-    .timer-num {
-      font-size: 36px;
-    }
-    .timer-unit {
-      font-size: 13px;
-    }
-    .section-header .sub-en {
-      font-size: 18px;
-    }
-    .section-header h2 {
-      font-size: 32px;
-    }
-    .story-card {
-      font-size: 17px;
-    }
-    .signature {
-      font-size: 28px;
-    }
-    .v-time {
-      font-size: 28px;
-    }
-    .v-details h4 {
-      font-size: 20px;
-    }
-    .v-details p {
-      font-size: 16px;
-    }
-    .v-tag {
-      font-size: 13px;
-      padding: 6px 16px;
-    }
-    .dress-code-intro {
-      font-size: 17px;
-    }
-    .color-name-zh {
-      font-size: 16px;
-    }
-    .color-name-en {
-      font-size: 14px;
-    }
-    .venue-info-box h3 {
-      font-size: 26px;
-    }
-    .venue-info-box .venue-en-title {
-      font-size: 18px;
-    }
-    .venue-info-box p {
-      font-size: 17px;
-    }
-    .map-link-btn {
-      font-size: 15px;
-      padding: 10px 24px;
-    }
-    .transport-card-header {
-      font-size: 19px;
-    }
-    .transport-card-body {
-      font-size: 16px;
-    }
-    .form-label {
-      font-size: 15px;
-    }
-    .form-label .en-label {
-      font-family: var(--font-en);
-      font-size: 11px;
-      color: #8C6A21;
-      margin-left: 6px;
-      font-weight: 500;
-      letter-spacing: 1.2px;
-      opacity: 0.85;
-    }
-    .form-control {
-      font-size: 16px;
-    }
-    .btn-submit {
-      font-size: 17px;
-    }
-    .modal-box h3 {
-      font-size: 24px;
-    }
-    .modal-box p {
-      font-size: 16px;
-    }
-    .missing-fields-list {
-      font-size: 15px;
-    }
-    .btn-modal-close {
-      font-size: 15px;
-    }
-    footer {
-      font-size: 15px;
-    }
-    footer .footer-brand {
-      font-size: 26px;
-    }
-    footer .footer-venue {
-      font-size: 14px;
-      margin-top: 8px;
-      letter-spacing: 2px;
-      color: var(--accent-gold-light);
-      font-weight: 500;
     }
   </style>
 </head>
@@ -1192,7 +1087,7 @@
       <!-- 證婚迎賓 -->
       <div class="v-card">
         <div class="v-card-left">
-          <div class="v-time">10:30</div>
+          <div class="v-time">15:45</div>
           <div class="v-details">
             <h4 data-i18n="event1_title">花園證婚迎賓</h4>
             <p data-i18n="event1_desc">士林官邸花園 戶外綠意迎賓入席</p>
@@ -1204,7 +1099,7 @@
       <!-- 證婚儀式 -->
       <div class="v-card">
         <div class="v-card-left">
-          <div class="v-time">11:00</div>
+          <div class="v-time">16:00</div>
           <div class="v-details">
             <h4 data-i18n="event2_title">浪漫證婚儀式</h4>
             <p data-i18n="event2_desc">神聖誓言交換、對戒佩戴與親友幸福祝福</p>
@@ -1216,7 +1111,7 @@
       <!-- 宴會入席 -->
       <div class="v-card">
         <div class="v-card-left">
-          <div class="v-time">12:00</div>
+          <div class="v-time">17:30</div>
           <div class="v-details">
             <h4 data-i18n="event3_title">宴會廳迎賓入席</h4>
             <p data-i18n="event3_desc">2F 宴會廳 享用迎賓特調與好友歡聚時光</p>
@@ -1225,10 +1120,10 @@
         <span class="v-tag">Reception</span>
       </div>
 
-      <!-- 慶祝午宴 -->
+      <!-- 慶祝晚宴 -->
       <div class="v-card">
         <div class="v-card-left">
-          <div class="v-time">12:30</div>
+          <div class="v-time">18:00</div>
           <div class="v-details">
             <h4 data-i18n="event4_title">慶祝婚宴準時開席</h4>
             <p data-i18n="event4_desc">萬麗星級精緻美饌、溫馨互動與敬酒祝福</p>
@@ -1281,7 +1176,7 @@
     </div>
   </section>
 
-  <!-- 6. 交通指引 (卡片式全展開) -->
+  <!-- 6. 交通指引 (直接展開顯示) -->
   <section id="transport">
     <div class="section-header">
       <div class="sub-en">Location & Transit</div>
@@ -1291,7 +1186,7 @@
 
     <div class="venue-info-box">
       <h3>台北士林萬麗酒店</h3>
-      <div class="venue-en-title">Renaissance Taipei Shihlin Hotel</div>
+      <div class="venue-en-title">(Renaissance Taipei Shihlin Hotel)</div>
       <p><span class="nowrap-keyword">台北市士林區中山北路五段 470 巷 8 號</span></p>
       <div class="map-btn-wrap">
         <a href="https://www.google.com/maps/dir/?api=1&destination=台北士林萬麗酒店&destination_place_id=ChIJ0chAiKOuQjQRIDhnATBLMIs" target="_blank" rel="noopener noreferrer" class="map-link-btn">
@@ -1301,25 +1196,25 @@
       </div>
     </div>
 
-    <div class="transport-container">
+    <div class="transit-container">
       <!-- 捷運卡片 -->
-      <div class="transport-card">
-        <div class="transport-card-header">
+      <div class="transit-card">
+        <div class="transit-card-header">
           <span class="acc-icon">🚇</span>
           <span data-i18n="transit_mrt_title">大眾運輸 (捷運指南)</span>
         </div>
-        <div class="transport-card-body" data-i18n="transit_mrt_desc">
+        <div class="transit-card-content" data-i18n="transit_mrt_desc">
           搭乘台北捷運淡水信義線（紅線）至<span class="nowrap-keyword">【士林站】2 號出口</span>出站，步行約 <span class="nowrap-keyword">5-6 分鐘</span>即可抵達台北士林萬麗酒店。
         </div>
       </div>
 
-      <!-- 開車與停車卡片 -->
-      <div class="transport-card">
-        <div class="transport-card-header">
+      <!-- 自行前往與停車卡片 -->
+      <div class="transit-card">
+        <div class="transit-card-header">
           <span class="acc-icon">🚗</span>
           <span data-i18n="transit_car_title">自行前往 (導航與停車資訊)</span>
         </div>
-        <div class="transport-card-body" data-i18n="transit_car_desc">
+        <div class="transit-card-content" data-i18n="transit_car_desc">
           導航搜尋至<span class="nowrap-keyword">【台北士林萬麗酒店】</span>（台北市士林區中山北路五段 470 巷 8 號）。<br>
           飯店設有專屬地下停車場，婚宴賓客可於離場前向飯店櫃檯辦理免費停車消磁折抵，場內亦設有電動車充電車位。
         </div>
@@ -1350,13 +1245,21 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="entry_email">
-              <span data-i18n="lbl_email">電子信箱</span><span class="en-label">EMAIL *</span>
+              <span data-i18n="lbl_email">電子信箱</span><span class="en-label">EMAIL</span>
             </label>
-            <input type="email" id="entry_email" name="entry.1372504659" class="form-control" placeholder="" required>
+            <input type="email" id="entry_email" name="entry.1372504659" class="form-control" placeholder="">
           </div>
         </div>
 
-        <!-- 3. 與新人關係 -->
+        <!-- 3. 喜帖寄送地點 -->
+        <div class="form-group">
+          <label class="form-label" for="entry_address">
+            <span data-i18n="lbl_address">喜帖寄送地點</span><span class="en-label">MAILING ADDRESS</span>
+          </label>
+          <input type="text" id="entry_address" name="entry.891248963" class="form-control" placeholder="">
+        </div>
+
+        <!-- 4. 與新人關係 -->
         <div class="form-group">
           <label class="form-label" for="entry_relation">
             <span data-i18n="lbl_relation">與新人關係</span><span class="en-label">RELATIONSHIP *</span>
@@ -1372,7 +1275,7 @@
           </select>
         </div>
 
-        <!-- 4. 飲食需求 (葷食 / 素食) -->
+        <!-- 5. 飲食需求 (葷食 / 素食) -->
         <div class="form-group">
           <label class="form-label" for="entry_diet">
             <span data-i18n="lbl_diet">飲食偏好</span><span class="en-label">DIETARY PREFERENCES *</span>
@@ -1384,24 +1287,24 @@
           </select>
         </div>
 
-        <!-- 5. 證婚儀式人數 & 6. 宴客出席人數 -->
+        <!-- 6. 證婚儀式出席人數 & 7. 宴客出席人數 -->
         <div class="form-row">
           <div class="form-group">
             <label class="form-label" for="entry_ceremony_count">
-              <span data-i18n="lbl_ceremony_cnt">證婚儀式出席人數</span><span class="en-label">CEREMONY ATTENDANCE *</span>
+              <span data-i18n="lbl_ceremony_cnt">證婚儀式出席人數</span><span class="en-label">CEREMONY *</span>
             </label>
-            <input type="number" id="entry_ceremony_count" name="entry.611952378" class="form-control" min="0" max="99" placeholder="請輸入人數（若不克參加請填 0）" required>
+            <input type="number" id="entry_ceremony_count" name="entry.611952378" class="form-control" min="0" max="99" placeholder="若不克參加請填 0" required>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="entry_banquet_count">
-              <span data-i18n="lbl_banquet_cnt">宴客出席人數</span><span class="en-label">BANQUET ATTENDANCE *</span>
+              <span data-i18n="lbl_banquet_cnt">宴客出席人數</span><span class="en-label">BANQUET *</span>
             </label>
-            <input type="number" id="entry_banquet_count" name="entry.1260045809" class="form-control" min="0" max="99" placeholder="請輸入人數（若不克參加請填 0）" required>
+            <input type="number" id="entry_banquet_count" name="entry.1260045809" class="form-control" min="0" max="99" placeholder="若不克參加請填 0" required>
           </div>
         </div>
 
-        <!-- 7. 是否有小孩 (兒童座椅需求) -->
+        <!-- 8. 是否有小孩 (兒童座椅需求) -->
         <div class="form-group">
           <label class="form-label" for="entry_child">
             <span data-i18n="lbl_child">是否有小孩同行</span><span class="en-label">CHILDREN & HIGH CHAIR *</span>
@@ -1415,7 +1318,7 @@
           </select>
         </div>
 
-        <!-- 8. 給新人的一段祝福 -->
+        <!-- 9. 給新人的一段祝福 -->
         <div class="form-group">
           <label class="form-label" for="entry_blessing">
             <span data-i18n="lbl_blessing">給新人的一段祝福</span><span class="en-label">BLESSING & WISHES</span>
@@ -1622,8 +1525,8 @@
         dresscode_title: '著裝建議',
         dresscode_intro: '為使婚禮畫面更具典雅溫馨氛圍，誠摯邀請貴賓穿著森林大地色系、典雅正裝出席：',
         color_beige: '米色',
-        color_khaki: '卡其色',
         color_milktea: '奶茶色',
+        color_khaki: '卡其色',
         color_caramel: '焦糖色',
         transport_title: '交通指引',
         transit_mrt_title: '大眾運輸 (捷運指南)',
@@ -1633,6 +1536,7 @@
         rsvp_title: '出席回函',
         lbl_name: '姓名',
         lbl_email: '電子信箱',
+        lbl_address: '喜帖寄送地點',
         lbl_relation: '與新人關係',
         opt_relation_default: '請選擇您與新人的關係',
         lbl_diet: '飲食偏好',
@@ -1674,8 +1578,8 @@
         dresscode_title: 'Dress Code',
         dresscode_intro: 'To create a harmonious and elegant celebration, we kindly invite you to dress in forest green, warm earth tones, or elegant formal attire:',
         color_beige: 'Beige',
-        color_khaki: 'Khaki',
         color_milktea: 'Milk Tea',
+        color_khaki: 'Khaki',
         color_caramel: 'Caramel',
         transport_title: 'Location & Transit',
         transit_mrt_title: 'Public Transit (MRT)',
@@ -1685,6 +1589,7 @@
         rsvp_title: 'RSVP Attendance',
         lbl_name: 'Name',
         lbl_email: 'Email',
+        lbl_address: 'Mailing Address',
         lbl_relation: 'Relationship',
         opt_relation_default: 'Please select your relationship',
         lbl_diet: 'Dietary Preference',
@@ -1742,7 +1647,6 @@
       firstMissingElement = null;
 
       const nameEl = document.getElementById('entry_name');
-      const emailEl = document.getElementById('entry_email');
       const relationEl = document.getElementById('entry_relation');
       const dietEl = document.getElementById('entry_diet');
       const ceremonyEl = document.getElementById('entry_ceremony_count');
@@ -1755,11 +1659,10 @@
         missing.push({ label: isZh ? '姓名 (Name)' : 'Name', el: nameEl });
       }
 
+      const emailEl = document.getElementById('entry_email');
       const emailVal = emailEl.value.trim();
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailVal) {
-        missing.push({ label: isZh ? '電子信箱 (Email)' : 'Email', el: emailEl });
-      } else if (!emailRegex.test(emailVal)) {
+      if (emailVal && !emailRegex.test(emailVal)) {
         missing.push({ label: isZh ? '電子信箱格式不正確 (請包含 @ 及有效網域)' : 'Invalid Email format', el: emailEl });
       }
 
@@ -1768,19 +1671,19 @@
       }
 
       if (!dietEl.value) {
-        missing.push({ label: isZh ? '飲食偏好 (葷食 / 素食)' : 'Dietary Preference', el: dietEl });
+        missing.push({ label: isZh ? '飲食偏好 (Dietary Preference)' : 'Dietary Preference', el: dietEl });
       }
 
-      if (ceremonyEl.value.trim() === '') {
-        missing.push({ label: isZh ? '證婚儀式出席人數 (若不克參加請填 0)' : 'Ceremony Attendance (Enter 0 if unable)', el: ceremonyEl });
+      if (ceremonyEl.value.trim() === '' || isNaN(ceremonyEl.value) || Number(ceremonyEl.value) < 0) {
+        missing.push({ label: isZh ? '證婚儀式出席人數 (Ceremony Attendance)' : 'Ceremony Attendance', el: ceremonyEl });
       }
 
-      if (banquetEl.value.trim() === '') {
-        missing.push({ label: isZh ? '宴客出席人數 (若不克參加請填 0)' : 'Banquet Attendance (Enter 0 if unable)', el: banquetEl });
+      if (banquetEl.value.trim() === '' || isNaN(banquetEl.value) || Number(banquetEl.value) < 0) {
+        missing.push({ label: isZh ? '宴客出席人數 (Banquet Attendance)' : 'Banquet Attendance', el: banquetEl });
       }
 
       if (!childEl.value) {
-        missing.push({ label: isZh ? '是否有小孩同行 / 兒童椅需求' : 'Children & High Chair Requirement', el: childEl });
+        missing.push({ label: isZh ? '是否有小孩同行 (Children & High Chair)' : 'Children & High Chair', el: childEl });
       }
 
       if (missing.length > 0) {
@@ -1790,95 +1693,58 @@
       return missing;
     }
 
-    function triggerSuccess() {
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 80,
-          spread: 75,
-          origin: { y: 0.65 },
-          colors: ['#1C3524', '#DFBF7A', '#C5A059', '#2D4C36', '#FAF8F5']
-        });
-      }
-
-      if (modal) {
-        modal.classList.add('active');
-      }
-      if (rsvpForm) {
-        const submitBtn = rsvpForm.querySelector('.btn-submit');
-        rsvpForm.reset();
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = `<span>${currentLang === 'zh' ? '確認送出回函' : 'Submit RSVP'}</span><span>✦</span>`;
-        }
-      }
-      isSubmitting = false;
-    }
-
     if (rsvpForm) {
-      const submitBtn = rsvpForm.querySelector('.btn-submit');
-
-      rsvpForm.addEventListener('submit', function (e) {
+      rsvpForm.addEventListener('submit', (e) => {
         const missingFields = validateForm();
 
         if (missingFields.length > 0) {
           e.preventDefault();
-          e.stopPropagation();
-
-          if (missingFieldsList) {
-            missingFieldsList.innerHTML = missingFields.map(item => `<li>${item.label}</li>`).join('');
-          }
-          if (alertModal) {
-            alertModal.classList.add('active');
-          }
-          return false;
+          
+          missingFieldsList.innerHTML = '';
+          missingFields.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item.label;
+            missingFieldsList.appendChild(li);
+          });
+          
+          alertModal.classList.add('active');
+          return;
         }
 
         isSubmitting = true;
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = `<span>${currentLang === 'zh' ? '傳送中...' : 'Sending...'}</span><span>⏳</span>`;
-        }
-
-        try {
-          const formData = new FormData(rsvpForm);
-          fetch(rsvpForm.action, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: formData
-          }).then(() => {
-            triggerSuccess();
-          }).catch(() => {
-            setTimeout(() => {
-              if (isSubmitting) triggerSuccess();
-            }, 800);
-          });
-        } catch (err) {
-          setTimeout(() => {
-            if (isSubmitting) triggerSuccess();
-          }, 800);
-        }
       });
     }
 
-    if (alertCloseBtn && alertModal) {
+    if (alertCloseBtn) {
       alertCloseBtn.addEventListener('click', () => {
         alertModal.classList.remove('active');
         if (firstMissingElement) {
-          firstMissingElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
           firstMissingElement.focus();
+          firstMissingElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       });
     }
 
     if (hiddenIframe) {
-      hiddenIframe.addEventListener('load', function () {
+      hiddenIframe.addEventListener('load', () => {
         if (isSubmitting) {
-          triggerSuccess();
+          isSubmitting = false;
+          modal.classList.add('active');
+          rsvpForm.reset();
+
+          if (typeof confetti === 'function') {
+            confetti({
+              particleCount: 120,
+              spread: 70,
+              origin: { y: 0.6 },
+              colors: ['#C5A059', '#1C3524', '#DFBF7A', '#FAF8F5']
+            });
+          }
         }
       });
     }
 
-    if (modalCloseBtn && modal) {
+    if (modalCloseBtn) {
       modalCloseBtn.addEventListener('click', () => {
         modal.classList.remove('active');
       });
